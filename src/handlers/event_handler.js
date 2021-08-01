@@ -7,13 +7,8 @@ module.exports = (Discord, client) => {
         for(const file of event_files){
             const event = require(`../events/${dirs}/${file}`);
             const event_name = file.split('.')[0];
-            if(event_name === "slashcommands"){
-                client.ws.on('INTERACTION_CREATE', interaction => {
-                    require('../events/guild/slashcommands')(client, interaction)
-                    })
-                } else {
-                    client.on(event_name, event.bind(null, Discord, client))
-                }
+            client.on(event_name, event.bind(null, Discord, client))
+                
         }
     }
 

@@ -1,17 +1,20 @@
-const { MessageEmbed } = require("discord.js");
+const wait = require('util').promisify(setTimeout);
+const { MessageEmbed } = require('discord.js');
+const fetch = require('node-fetch');
+require('dotenv').config();
 
 module.exports = {
-    slash: true,
-    testOnly: true,
-    description: "!יוצר סקר",
-    minArgs: 1,
-    expectedArgs: '<poll>',
-    callback: async({args, channel, interaction, client}) => {
-        let [poll] = args;
+    name: 'poll',
+    description: 'יוצר סקר!',
+    async execute(client, interaction, member, channel, guild) {
+        const poll = interaction.options.getString('poll');
         let embed = new MessageEmbed()
-        .setTitle(poll)
-        .setAuthor(interaction.member.user.username)
-        .setDescription("אנא עשה ריאקט עם האימוג'י ה👍 או ה👎, תודה")
-        return embed
-    }
-}
+        .setTitle('📋 ' + '**' + poll + '**')
+        .setAuthor( "שואל הסקר: " + member.user.username);
+
+        interaction.editReply({embeds: [embed]}).then(r => {
+            r.react("👍")
+            r.react("👎")
+        })
+    },
+};
