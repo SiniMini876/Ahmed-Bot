@@ -16,7 +16,7 @@ module.exports = async (Discord, client, interaction) => {
 
 
 	try {
-        await interaction.defer()
+        await interaction.deferReply()
 		await client.slashcommands.get(interaction.commandName).execute(client, interaction, member, channel, guild);
 	} catch (error) {
 		console.error(error);

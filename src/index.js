@@ -2,7 +2,7 @@ require('dotenv').config();
 const Discord = require("discord.js");
 let PREFIX = process.env.PREFIX;
 
-const client = new Discord.Client({intents: ['GUILDS', 'GUILD_MESSAGES'], partials: ['MESSAGE', 'REACTION']});
+const client = new Discord.Client({intents: ['GUILDS', 'GUILD_MESSAGES', 'GUILD_VOICE_STATES', 'GUILD_MESSAGE_TYPING', 'GUILD_EMOJIS_AND_STICKERS', 'GUILD_BANS', 'GUILD_PRESENCES', 'GUILD_INVITES'], partials: ['MESSAGE', 'REACTION']});
 client.commands = new Discord.Collection();
 client.slashcommands = new Discord.Collection();
 client.aliases = new Discord.Collection();

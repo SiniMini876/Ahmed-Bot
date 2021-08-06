@@ -9,12 +9,18 @@ module.exports = {
     async execute(client, interaction, member, channel, guild) {
         const max = interaction.options.getNumber('maximumpeople');
 
+        if (guild.id !== '693864294911049829')
+            // buganim's ID
+            return interaction.editReply(
+                "This command can only be used in Buganim's Server!"
+            );
+
         const newVoiceChannel = await guild.channels.create(
             `חדר פרטי - ${interaction.user.username} -  ${max}`,
             {
                 type: 'GUILD_VOICE',
                 // parent: '762279647815401483',
-                parent: '720226309267259434',
+                parent: '762279647815401483',
                 userLimit: max,
             }
         );
@@ -34,7 +40,7 @@ module.exports = {
 
         setInterval(() => {
             if (guild.channels.cache.find((c) => c.id === voiceChannel.id)) {
-                if (voiceChannel.members.length === 0) {
+                if (voiceChannel.members.filter((member) => !member.user.bot)) {
                     voiceChannel.delete().catch();
                     interaction.deleteReply().catch();
                     return;

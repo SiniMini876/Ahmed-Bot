@@ -28,7 +28,7 @@
     "@discordjs/opus": "^0.3.2",
     "ascii-table": "0.0.9",
     "axios": "^0.21.1",
-    "discord.js": "^13.0.0-dev.t1627819382.bb56f17",
+    "discord.js": "^13.0.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "ini": "^2.0.0",
