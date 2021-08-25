@@ -8,7 +8,7 @@ module.exports = {
     usage: "!clear `<number of messages>`",
     description: "The bot deletes x messages.",
     async execute(bot, msg, args){
-        if(!msg.member.roles.cache.find(r => r.name === "OP")) return msg.channel.send('סורי אחי, אין לך רשות לעשות מעשה שכזה. יבומר');
+        if(!msg.member.permissions.has("MANAGE_MESSAGES")) return msg.channel.send('סורי אחי, אין לך רשות לעשות מעשה שכזה. יבומר');
         if(!args[1]) return msg.channel.send('תגיד כמה הודעות למחוק יאפס')
         msg.channel.bulkDelete(args[1]).catch(console.error);
     }

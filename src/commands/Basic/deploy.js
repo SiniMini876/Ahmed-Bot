@@ -138,10 +138,23 @@ module.exports = {
                         },
                     ],
                 },
+                {
+                    name: 'clear',
+                    description:
+                        'Deletes the amount of the message you want to delete.',
+                    options: [
+                        {
+                            name: 'amount',
+                            description: 'The amount of the message you want to delete.',
+                            required: true,
+                            type: 'NUMBER',
+                        },
+                    ],
+                },
             ];
 
             client.application.commands.set(data, message.guild.id);
-            return message.reply("Deployed!")
+            return message.reply('Deployed!');
         }
     },
 };

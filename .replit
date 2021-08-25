@@ -1,2 +1,2 @@
 language = "nodejs"
-run = "bash run.bat"
+run = "npm start"
