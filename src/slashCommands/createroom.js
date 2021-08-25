@@ -40,7 +40,7 @@ module.exports = {
 
         setInterval(() => {
             if (guild.channels.cache.find((c) => c.id === voiceChannel.id)) {
-                if (voiceChannel.members.filter((member) => !member.user.bot)) {
+                if (voiceChannel.members.filter((member) => !member.user.bot).size == 0) {
                     voiceChannel.delete().catch();
                     interaction.deleteReply().catch();
                     return;

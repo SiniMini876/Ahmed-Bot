@@ -11,7 +11,7 @@ module.exports = {
         if (!client.application?.owner) await client.application?.fetch();
 
         if (message.author.id === client.application.owner.id) {
-            const data =[
+            const data = [
                 {
                     name: 'activity',
                     description: "Let's you create an Activity in a VC!",
@@ -60,37 +60,88 @@ module.exports = {
                     name: 'createroom',
                     description:
                         "Let's you create a unique room just for you and the number of people you set!",
-                    options: [{
-                        name: 'maximumpeople',
-                        description: 'The maximum amount of people that can join!',
-                        required: true,
-                        type: 'NUMBER',
-                    }],
+                    options: [
+                        {
+                            name: 'maximumpeople',
+                            description:
+                                'The maximum amount of people that can join!',
+                            required: true,
+                            type: 'NUMBER',
+                        },
+                    ],
                 },
                 {
                     name: 'poll',
                     description: 'Creates a poll!',
-                    options: [{
-                        name: 'poll',
-                        description: "The question that you want to ask!",
-                        required: true,
-                        type: 'STRING'
-                    }]
+                    options: [
+                        {
+                            name: 'poll',
+                            description: 'The question that you want to ask!',
+                            required: true,
+                            type: 'STRING',
+                        },
+                    ],
                 },
                 {
                     name: 'kesem',
                     description: '!קונכיית הקסם',
-                    options: [{
-                        name: 'השאלה',
-                        description: "השאלה שאתה רוצה לשאול",
-                        required: true,
-                        type: 'STRING'
-                    }]
-                }
-            ]
-            
+                    options: [
+                        {
+                            name: 'השאלה',
+                            description: 'השאלה שאתה רוצה לשאול',
+                            required: true,
+                            type: 'STRING',
+                        },
+                    ],
+                },
+                {
+                    name: 'mute',
+                    description: 'Mutes the person you choose.',
+                    options: [
+                        {
+                            name: 'member',
+                            description: 'Your member that you want to mute.',
+                            required: true,
+                            type: 'USER',
+                        },
+                        {
+                            name: 'duration',
+                            description:
+                                'The duration you want to set for the mute.',
+                            required: true,
+                            type: 'NUMBER',
+                        },
+                        {
+                            name: 'time',
+                            description:
+                                'The type of time you want to set for the mute.',
+                            choices: [
+                                {
+                                    name: 'seconds',
+                                    value: 's',
+                                },
+                                {
+                                    name: 'minutes',
+                                    value: 'm',
+                                },
+                                {
+                                    name: 'hours',
+                                    value: 'h',
+                                },
+                                {
+                                    name: 'days',
+                                    value: 'd',
+                                },
+                            ],
+                            required: true,
+                            type: 'STRING',
+                        },
+                    ],
+                },
+            ];
 
-            client.application.commands.set(data, demoServerID)
+            client.application.commands.set(data, message.guild.id);
+            return message.reply("Deployed!")
         }
     },
 };
