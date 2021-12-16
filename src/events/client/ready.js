@@ -14,7 +14,7 @@ module.exports = async (Discord, client) => {
 
         .on('noResults', (queue, playlist) => {
             if (Number.isInteger(queue.metadata.token)) {
-                return queue.metadata.followUp({
+                return queue.metadata.editReply({
                     content: `Unfortunatly I couldn't find something related to ${query}... Try doing it again`,
                     ephemeral: true,
                 });
@@ -26,7 +26,7 @@ module.exports = async (Discord, client) => {
 
         .on('playlistStart', (queue, playlist, track) => {
             if (Number.isInteger(queue.metadata.token)) {
-                queue.metadata.followUp(
+                queue.metadata.editReply(
                     '✅  | ' +
                         'Playing playlist: ' +
                         playlist.title +
@@ -53,7 +53,7 @@ module.exports = async (Discord, client) => {
         })
         .on('playlistAdd', (queue, playlist) => {
             if (Number.isInteger(queue.metadata.token)) {
-                queue.metadata.followUp('🎶 || Added playlist to the queue:');
+                queue.metadata.editReply('🎶 || Added playlist to the queue:');
             } else {
                 queue.metadata.channel.send(
                     '🎶 || Added playlist to the queue:'
