@@ -1,12 +1,6 @@
 const express = require("express");
-const app = express();
-const port = 5000;
 
 module.exports = async (Discord, client) => {
-    app.get("/", (req, res) => res.send("The Ultimate Ahmed is Active!"));
-
-    app.listen(port || 5000, () => console.log(`Ahmed is Active and lisening on port ${port}`));
-
     client.user.setActivity('להרביץ ליהודים', { type: 'PLAYING' });
     
     client.player
