@@ -20,7 +20,7 @@ module.exports = {
             {
                 type: 'GUILD_VOICE',
                 // parent: '762279647815401483',
-                parent: '762279647815401483',
+                parent: '719179244781043813',
                 userLimit: max,
             }
         );

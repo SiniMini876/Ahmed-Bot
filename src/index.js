@@ -1,6 +1,7 @@
-require('dotenv').config();
 const Discord = require('discord.js');
-let PREFIX = process.env.prefix;
+require('dotenv').config();
+let TOKEN = process.env.BOT_TOKEN,
+    PREFIX = process.env.prefix;
 
 const client = new Discord.Client({
     intents: [
@@ -13,19 +14,25 @@ const client = new Discord.Client({
         'GUILD_PRESENCES',
         'GUILD_INVITES',
     ],
-    partials: ['MESSAGE', 'REACTION'],
 });
-client.commands = new Discord.Collection();
+
+const { Player } = require('discord-player');
+const player = new Player(client, {
+    ytdlDownloadOptions: {
+        filter: 'audioonly',
+    },
+});
+
+client.player = player;
 client.slashcommands = new Discord.Collection();
-client.aliases = new Discord.Collection();
+client.oldcommands = new Discord.Collection();
 client.events = new Discord.Collection();
-client.cooldowns = new Discord.Collection();
 client.prefix = PREFIX;
 
-['command_handler', 'event_handler', 'slashcommand_handler'].forEach(
+['event_handler', 'command_handler', 'slashcommand_handler'].forEach(
     (handler) => {
         require(`./handlers/${handler}`)(Discord, client);
     }
 );
 
-client.login(process.env.BOT_TOKEN);
+client.login(TOKEN);

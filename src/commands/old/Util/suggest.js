@@ -1,6 +1,5 @@
 const Discord = require('discord.js');
 const { Client, Util, MessageEmbed, MessageAttachment } = require("discord.js");
-
 module.exports = {
     name: "suggest",
     aliases: ["sug"],

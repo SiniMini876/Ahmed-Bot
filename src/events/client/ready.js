@@ -1,163 +1,108 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const port = 3000;
-const wokCommands = require('wokcommands');
-let demoServerID = '720226309267259432';
-let buganimServerID = '693864294911049829';
-const fetch = require('node-fetch');
-require('dotenv').config();
+const port = 5000;
 
 module.exports = async (Discord, client) => {
-    const getApp = async (guildID) => {
-        const app = await client.api.applications(client.user.id);
-        if (guildID) {
-            app.guilds(guildID);
-        }
-        return app;
-    };
+    app.get("/", (req, res) => res.send("The Ultimate Ahmed is Active!"));
 
-    app.get('/', (req, res) => res.send('AhmedBot is Active!'));
-
-    app.listen(port, () =>
-        console.log(`AhmedBot is Active and lisening on port ${port}`)
-    );
-    // getApp(buganimServerID, demoServerID, '839124298983014450').commands.post({
-    //     data: {
-    //         name: 'activity',
-    //         description: "Let's you create an Activity in a VC!",
-    //         options: [
-    //             {
-    //                 name: 'channel',
-    //                 description: 'The VC that the bot will activate',
-    //                 required: true,
-    //                 type: 7,
-    //             },
-    //             {
-    //                 name: 'activity',
-    //                 description: 'Which activity do you want to play.',
-    //                 required: true,
-    //                 type: 3,
-    //                 choices: [
-    //                     {
-    //                         name: 'Youtube Together',
-    //                         value: '755600276941176913',
-    //                     },
-    //                     {
-    //                         name: 'Poker Night',
-    //                         value: '755827207812677713',
-    //                     },
-    //                     {
-    //                         name: 'Betrayal',
-    //                         value: '773336526917861400',
-    //                     },
-    //                     {
-    //                         name: 'Fishing',
-    //                         value: '814288819477020702',
-    //                     },
-    //                     {
-    //                         name: 'Chess',
-    //                         value: '832012774040141894',
-    //                     },
-    //                     {
-    //                         name: 'ChessDEV',
-    //                         value: '832012586023256104',
-    //                     },
-    //                 ],
-    //             },
-    //         ],
-    //     },
-    // });
-
-    // const reply = (interaction, response) => {
-    //     client.api
-    //         .interactions(interaction.id, interaction.token)
-    //         .callback.post({
-    //             data: {
-    //                 type: 4,
-    //                 data: {
-    //                     content: response,
-    //                 },
-    //             },
-    //         });
-    // };
-
-    // client.ws.on('INTERACTION_CREATE', async (interaction) => {
-    //     let returnData = {
-    //         code: 'none'
-    //     };
-
-    //     const { options } = interaction.data;
-
-    //     const command = interaction.data.name;
-
-    //     const guild = client.guilds.cache.find(
-    //         (g) => g.id === interaction.guild_id
-    //     );
-    //     const member = guild.members.cache.find(
-    //         (m) => m.id === interaction.member.user.id
-    //     );
-    //     const VCchannel = guild.channels.cache.find(
-    //         (c) => c.id === options[0].value
-    //     );
-
-    //     if (command === 'activity') {
-    //         if (!member.voice.channel)
-    //             return reply(
-    //                 interaction,
-    //                 'You must be in the same VC as you selected! || You must select VC!'
-    //             );
-    //         if (member.voice.channelID !== VCchannel.id) {
-    //             return reply(
-    //                 interaction,
-    //                 'You must be in the same VC as you selected!'
-    //             );
-    //         }
-
-    //         await fetch(`https://discord.com/api/v8/channels/${VCchannel.id}/invites`, {
-    //             method: 'POST',
-    //             body: JSON.stringify({
-    //                 max_age: 86400,
-    //                 max_uses: 0,
-    //                 target_application_id: options[1].value,
-    //                 target_type: 2,
-    //                 temporary: false,
-    //                 validate: null
-    //             }),
-    //             headers: {
-    //                 'Authorization': `Bot ${process.env.BOT_TOKEN}`,
-    //                 'Content-Type': 'application/json'
-    //             }
-    //         }).then(res => res.json())
-    //             .then(invite => {
-    //                 if (invite.error || !invite.code) throw new Error('An error occured while retrieving data !');
-    //                 if(invite.code === 50013 || invite.code === '50013') console.warn('Your bot lacks permissions to perform that action')
-    //                 returnData.code = `https://discord.com/invite/${invite.code}` + " **To start the activity, press this link!**"
-    //             })
-
-    //         reply(interaction, returnData.code);
-    //     }
-    // });
+    app.listen(port || 5000, () => console.log(`Ahmed is Active and lisening on port ${port}`));
 
     client.user.setActivity('להרביץ ליהודים', { type: 'PLAYING' });
+    
+    client.player
 
-    setInterval(() => {
-        let guild = client.guilds.cache.get('693864294911049829');
-        let memberCounterChannel =
-            guild.channels.cache.get('791247896762515457');
-        memberCounterChannel.setName(
-            `יש אצלנו ${guild.memberCount.toLocaleString()} נחשים`
-        );
-    }, 1.8e6);
-    setInterval(() => {
-        let guild = client.guilds.cache.find(
-            (g) => g.id === '693864294911049829'
-        );
-        let textChannel = guild.channels.cache.find(
-            (c) => c.id === '719178323200180266'
-        );
-        const dog24 = require('../../commands/Settings/dog').run(
-            client,
-            textChannel
-        );
-    }, 8.64e7);
+        .on("noResults", (queue, playlist) => {
+            if (Number.isInteger(queue.metadata.token)) {
+                return queue.metadata.followUp({
+                    content: `Unfortunatly I couldn't find something related to ${query}... Try doing it again`,
+                    ephemeral: true
+                });
+            } else
+                return queue.metadata.channel.send({
+                    content: `Unfortunatly I couldn't find something related to ${query}... Try doing it again`
+                });
+        })
+
+        .on("playlistStart", (queue, playlist, track) => {
+            if (Number.isInteger(queue.metadata.token)) {
+                queue.metadata.followUp(
+                    "✅  | " + "Playing playlist: " + playlist.title + " 🎶 " + track.title
+                );
+            } else {
+                queue.metadata.channel.send(
+                    "✅  | " + "Playing playlist: " + playlist.title + " 🎶 " + track.title
+                );
+            }
+        })
+
+        .on("queueEnd", (queue) => {
+            if (Number.isInteger(queue.metadata.token)) {
+                queue.metadata.followUp("🎶 || The queue has ended!");
+            } else {
+                queue.metadata.channel.send("🎶 || The queue has ended!");
+            }
+        })
+        .on("playlistAdd", (queue, playlist) => {
+            if (Number.isInteger(queue.metadata.token)) {
+                queue.metadata.followUp("🎶 || Added playlist to the queue:");
+            } else {
+                queue.metadata.channel.send("🎶 || Added playlist to the queue:");
+            }
+        })
+        .on("trackAdd", (queue, track) => {
+            if (Number.isInteger(queue.metadata.token)) {
+                if (queue.tracks.length === 1)
+                    queue.metadata.editReply("🎶 || A track has added to the queue: " + track.title);
+                else queue.metadata.followUp("🎶 || A track has added to the queue: " + track.title);
+            } else {
+                if (queue.tracks.length === 1)
+                    queue.metadata.channel.send("🎶 || A track has added to the queue: " + track.title);
+                else queue.metadata.channel.send("🎶 || A track has added to the queue: " + track.title);
+            }
+        })
+
+        .on("trackStart", async (queue, track) => {
+            let playBUT = new Discord.MessageButton().setStyle("PRIMARY").setEmoji("▶").setCustomId("play");
+            let skipBUT = new Discord.MessageButton().setStyle("PRIMARY").setEmoji("⏭").setCustomId("skip");
+            let muteBUT = new Discord.MessageButton().setStyle("PRIMARY").setEmoji("🔇").setCustomId("mute");
+            let volDownBUT = new Discord.MessageButton()
+                .setStyle("PRIMARY")
+                .setEmoji("🔉")
+                .setCustomId("volDown");
+            let volUpBUT = new Discord.MessageButton()
+                .setStyle("PRIMARY")
+                .setEmoji("🔊")
+                .setCustomId("volUp");
+            let stopBUT = new Discord.MessageButton().setStyle("PRIMARY").setEmoji("⏹").setCustomId("stop");
+            let pauBUT = new Discord.MessageButton().setStyle("PRIMARY").setEmoji("⏸").setCustomId("pause");
+
+            let row = new Discord.MessageActionRow().addComponents(playBUT, pauBUT, volUpBUT, volDownBUT);
+            let row2 = new Discord.MessageActionRow().addComponents(skipBUT, muteBUT, stopBUT);
+            let msg;
+            let msg2;
+            if (Number.isInteger(queue.metadata.token)) {
+                msg = await queue.metadata.followUp({
+                    content: `Now playing ${track.title}...`,
+                    components: [row]
+                });
+                msg2 = await queue.metadata.followUp({
+                    content: `More buttons to control...`,
+                    components: [row2]
+                });
+            } else {
+                msg = await queue.metadata.channel.send({
+                    content: `Now playing ${track.title}...`,
+                    components: [row]
+                });
+                msg2 = await queue.metadata.channel.send({
+                    content: `More buttons to control...`,
+                    components: [row2]
+                });
+            }
+
+            setTimeout(() => {
+                msg.delete();
+                msg2.delete();
+            }, track.durationMS);
+        });
 };

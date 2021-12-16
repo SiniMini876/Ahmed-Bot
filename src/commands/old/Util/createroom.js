@@ -13,7 +13,7 @@ module.exports = {
             `חדר פרטי - ${msg.author.username} -  ${args[1]}`,
             {
                 type: "voice",
-                parent: "762279647815401483",
+                parent: "719179244781043813",
                 userLimit: args[1],
             }
         );
