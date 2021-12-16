@@ -1,96 +1,147 @@
-const express = require("express");
+const express = require('express');
+const app = express();
+const port = 5000;
 
 module.exports = async (Discord, client) => {
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+        console.log(`Ahmed is running on port ${PORT}`);
+    });
+
     client.user.setActivity('להרביץ ליהודים', { type: 'PLAYING' });
-    
+
     client.player
 
-        .on("noResults", (queue, playlist) => {
+        .on('noResults', (queue, playlist) => {
             if (Number.isInteger(queue.metadata.token)) {
                 return queue.metadata.followUp({
                     content: `Unfortunatly I couldn't find something related to ${query}... Try doing it again`,
-                    ephemeral: true
+                    ephemeral: true,
                 });
             } else
                 return queue.metadata.channel.send({
-                    content: `Unfortunatly I couldn't find something related to ${query}... Try doing it again`
+                    content: `Unfortunatly I couldn't find something related to ${query}... Try doing it again`,
                 });
         })
 
-        .on("playlistStart", (queue, playlist, track) => {
+        .on('playlistStart', (queue, playlist, track) => {
             if (Number.isInteger(queue.metadata.token)) {
                 queue.metadata.followUp(
-                    "✅  | " + "Playing playlist: " + playlist.title + " 🎶 " + track.title
+                    '✅  | ' +
+                        'Playing playlist: ' +
+                        playlist.title +
+                        ' 🎶 ' +
+                        track.title
                 );
             } else {
                 queue.metadata.channel.send(
-                    "✅  | " + "Playing playlist: " + playlist.title + " 🎶 " + track.title
+                    '✅  | ' +
+                        'Playing playlist: ' +
+                        playlist.title +
+                        ' 🎶 ' +
+                        track.title
                 );
             }
         })
 
-        .on("queueEnd", (queue) => {
+        .on('queueEnd', (queue) => {
             if (Number.isInteger(queue.metadata.token)) {
-                queue.metadata.followUp("🎶 || The queue has ended!");
+                queue.metadata.followUp('🎶 || The queue has ended!');
             } else {
-                queue.metadata.channel.send("🎶 || The queue has ended!");
+                queue.metadata.channel.send('🎶 || The queue has ended!');
             }
         })
-        .on("playlistAdd", (queue, playlist) => {
+        .on('playlistAdd', (queue, playlist) => {
             if (Number.isInteger(queue.metadata.token)) {
-                queue.metadata.followUp("🎶 || Added playlist to the queue:");
+                queue.metadata.followUp('🎶 || Added playlist to the queue:');
             } else {
-                queue.metadata.channel.send("🎶 || Added playlist to the queue:");
+                queue.metadata.channel.send(
+                    '🎶 || Added playlist to the queue:'
+                );
             }
         })
-        .on("trackAdd", (queue, track) => {
+        .on('trackAdd', (queue, track) => {
             if (Number.isInteger(queue.metadata.token)) {
                 if (queue.tracks.length === 1)
-                    queue.metadata.editReply("🎶 || A track has added to the queue: " + track.title);
-                else queue.metadata.followUp("🎶 || A track has added to the queue: " + track.title);
+                    queue.metadata.editReply(
+                        '🎶 || A track has added to the queue: ' + track.title
+                    );
+                else
+                    queue.metadata.followUp(
+                        '🎶 || A track has added to the queue: ' + track.title
+                    );
             } else {
                 if (queue.tracks.length === 1)
-                    queue.metadata.channel.send("🎶 || A track has added to the queue: " + track.title);
-                else queue.metadata.channel.send("🎶 || A track has added to the queue: " + track.title);
+                    queue.metadata.channel.send(
+                        '🎶 || A track has added to the queue: ' + track.title
+                    );
+                else
+                    queue.metadata.channel.send(
+                        '🎶 || A track has added to the queue: ' + track.title
+                    );
             }
         })
 
-        .on("trackStart", async (queue, track) => {
-            let playBUT = new Discord.MessageButton().setStyle("PRIMARY").setEmoji("▶").setCustomId("play");
-            let skipBUT = new Discord.MessageButton().setStyle("PRIMARY").setEmoji("⏭").setCustomId("skip");
-            let muteBUT = new Discord.MessageButton().setStyle("PRIMARY").setEmoji("🔇").setCustomId("mute");
+        .on('trackStart', async (queue, track) => {
+            let playBUT = new Discord.MessageButton()
+                .setStyle('PRIMARY')
+                .setEmoji('▶')
+                .setCustomId('play');
+            let skipBUT = new Discord.MessageButton()
+                .setStyle('PRIMARY')
+                .setEmoji('⏭')
+                .setCustomId('skip');
+            let muteBUT = new Discord.MessageButton()
+                .setStyle('PRIMARY')
+                .setEmoji('🔇')
+                .setCustomId('mute');
             let volDownBUT = new Discord.MessageButton()
-                .setStyle("PRIMARY")
-                .setEmoji("🔉")
-                .setCustomId("volDown");
+                .setStyle('PRIMARY')
+                .setEmoji('🔉')
+                .setCustomId('volDown');
             let volUpBUT = new Discord.MessageButton()
-                .setStyle("PRIMARY")
-                .setEmoji("🔊")
-                .setCustomId("volUp");
-            let stopBUT = new Discord.MessageButton().setStyle("PRIMARY").setEmoji("⏹").setCustomId("stop");
-            let pauBUT = new Discord.MessageButton().setStyle("PRIMARY").setEmoji("⏸").setCustomId("pause");
+                .setStyle('PRIMARY')
+                .setEmoji('🔊')
+                .setCustomId('volUp');
+            let stopBUT = new Discord.MessageButton()
+                .setStyle('PRIMARY')
+                .setEmoji('⏹')
+                .setCustomId('stop');
+            let pauBUT = new Discord.MessageButton()
+                .setStyle('PRIMARY')
+                .setEmoji('⏸')
+                .setCustomId('pause');
 
-            let row = new Discord.MessageActionRow().addComponents(playBUT, pauBUT, volUpBUT, volDownBUT);
-            let row2 = new Discord.MessageActionRow().addComponents(skipBUT, muteBUT, stopBUT);
+            let row = new Discord.MessageActionRow().addComponents(
+                playBUT,
+                pauBUT,
+                volUpBUT,
+                volDownBUT
+            );
+            let row2 = new Discord.MessageActionRow().addComponents(
+                skipBUT,
+                muteBUT,
+                stopBUT
+            );
             let msg;
             let msg2;
             if (Number.isInteger(queue.metadata.token)) {
                 msg = await queue.metadata.followUp({
                     content: `Now playing ${track.title}...`,
-                    components: [row]
+                    components: [row],
                 });
                 msg2 = await queue.metadata.followUp({
                     content: `More buttons to control...`,
-                    components: [row2]
+                    components: [row2],
                 });
             } else {
                 msg = await queue.metadata.channel.send({
                     content: `Now playing ${track.title}...`,
-                    components: [row]
+                    components: [row],
                 });
                 msg2 = await queue.metadata.channel.send({
                     content: `More buttons to control...`,
-                    components: [row2]
+                    components: [row2],
                 });
             }
 
