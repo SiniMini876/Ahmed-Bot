@@ -14,7 +14,7 @@ module.exports = async (Discord, client) => {
     client.player
 
         .on('noResults', (queue, playlist) => {
-            if (Number.isInteger(queue.metadata.token)) {
+            if (queue.metadata instanceof inter) {
                 return queue.metadata.followUp({
                     content: `Unfortunatly I couldn't find something related to ${query}... Try doing it again`,
                     ephemeral: true,
@@ -26,7 +26,7 @@ module.exports = async (Discord, client) => {
         })
 
         .on('playlistStart', (queue, playlist, track) => {
-            if (Number.isInteger(queue.metadata.token)) {
+            if (queue.metadata instanceof inter) {
                 queue.metadata.followUp(
                     '✅  | ' +
                         'Playing playlist: ' +
@@ -46,14 +46,14 @@ module.exports = async (Discord, client) => {
         })
 
         .on('queueEnd', (queue) => {
-            if (Number.isInteger(queue.metadata.token)) {
+            if (queue.metadata instanceof inter) {
                 queue.metadata.followUp('🎶 || The queue has ended!');
             } else {
                 queue.metadata.channel.send('🎶 || The queue has ended!');
             }
         })
         .on('playlistAdd', (queue, playlist) => {
-            if (Number.isInteger(queue.metadata.token)) {
+            if (queue.metadata instanceof inter) {
                 queue.metadata.followUp('🎶 || Added playlist to the queue:');
             } else {
                 queue.metadata.channel.send(
@@ -126,7 +126,7 @@ module.exports = async (Discord, client) => {
             );
             let msg;
             let msg2;
-            if (Number.isInteger(queue.metadata.token)) {
+            if (queue.metadata instanceof inter) {
                 msg = await queue.metadata.followUp({
                     content: `Now playing ${track.title}...`,
                     components: [row],

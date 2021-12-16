@@ -5,7 +5,7 @@ const cooldowns = new Map();
 module.exports = (Discord, client, message) => {
     if(message.author.bot) return
     if(!message.content.startsWith(client.prefix)){
-        require('../../commands/Settings/custom_words').run(client, message);
+        require('../../commands/old/Settings/custom_words').run(client, message);
         return;
     };
 
