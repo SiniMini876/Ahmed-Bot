@@ -1,7 +1,7 @@
 require("dotenv").config();
 
 module.exports = async(Discord, client, interaction) => {
-    const queue = client.player.getQueue(interaction.guild);
+    const queue = client.player.getQueue(interaction.guildId);
 
     if (interaction.customId === "play") {
         queue.setPaused(false);
