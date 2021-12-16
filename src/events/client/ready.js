@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 5000;
+const inter = require("discord.js").Interaction
 
 module.exports = async (Discord, client) => {
     const PORT = process.env.PORT || 3000;
@@ -14,7 +15,7 @@ module.exports = async (Discord, client) => {
 
         .on('noResults', (queue, playlist) => {
             if (Number.isInteger(queue.metadata.token)) {
-                return queue.metadata.editReply({
+                return queue.metadata.followUp({
                     content: `Unfortunatly I couldn't find something related to ${query}... Try doing it again`,
                     ephemeral: true,
                 });
@@ -26,7 +27,7 @@ module.exports = async (Discord, client) => {
 
         .on('playlistStart', (queue, playlist, track) => {
             if (Number.isInteger(queue.metadata.token)) {
-                queue.metadata.editReply(
+                queue.metadata.followUp(
                     '✅  | ' +
                         'Playing playlist: ' +
                         playlist.title +
@@ -53,7 +54,7 @@ module.exports = async (Discord, client) => {
         })
         .on('playlistAdd', (queue, playlist) => {
             if (Number.isInteger(queue.metadata.token)) {
-                queue.metadata.editReply('🎶 || Added playlist to the queue:');
+                queue.metadata.followUp('🎶 || Added playlist to the queue:');
             } else {
                 queue.metadata.channel.send(
                     '🎶 || Added playlist to the queue:'
@@ -61,7 +62,7 @@ module.exports = async (Discord, client) => {
             }
         })
         .on('trackAdd', (queue, track) => {
-            if (Number.isInteger(queue.metadata.token)) {
+            if (queue.metadata instanceof inter) {
                 if (queue.tracks.length === 1)
                     queue.metadata.editReply(
                         '🎶 || A track has added to the queue: ' + track.title
