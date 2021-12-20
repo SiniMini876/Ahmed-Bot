@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 5000;
-const inter = require("discord.js").Interaction
+const inter = require('discord.js').Interaction;
 
 module.exports = async (Discord, client) => {
     const PORT = process.env.PORT || 3000;

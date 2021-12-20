@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "INCREDIBLE bot for server, made by SiniMini876",
   "main": "src/index.js",
+  "engines": {
+    "node": "17.x"
+  },
   "keywords": [
     "JavaScript",
     "DiscordJS",
