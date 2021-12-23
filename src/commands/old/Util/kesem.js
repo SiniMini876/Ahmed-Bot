@@ -6,7 +6,7 @@ module.exports = {
     aliases: ["k"],
     cooldown: 5,
     description: "אתה שואל שאלת כן ולא והבוט שולח תשובה רנדומלית",
-    async execute(bot, msg, args,){
+    async execute(msg, args, client, Discord){
 
         if(!args[2]) return msg.reply('תשאל שאלה נורמלית בן אדם');
         let replies = ['כן', 'לא', 'אני לא יודע, מה אני יעשה', 'תשאל מאוחר יותר אני נכה מידי כרגע'];

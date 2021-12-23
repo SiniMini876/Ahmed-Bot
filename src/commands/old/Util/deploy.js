@@ -1,5 +1,5 @@
-const { MessageEmbed } = require("discord.js");
-const { Player, QueryType, QueueRepeatMode } = require("discord-player");
+const { MessageEmbed } = require('discord.js');
+const { Player, QueryType, QueueRepeatMode } = require('discord-player');
 
 module.exports = {
     name: 'deploy',
@@ -367,6 +367,11 @@ module.exports = {
                     name: 'help',
                     description:
                         "You didn't understand a thing of what's going on here? just type this command",
+                },
+                {
+                    name: 'restart',
+                    description:
+                        'The bot restarts, should take a couple of minutes',
                 },
             ];
 

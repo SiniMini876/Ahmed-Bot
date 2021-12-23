@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 require('dotenv').config();
 let TOKEN = process.env.BOT_TOKEN,
-    PREFIX = process.env.prefix;
+    PREFIX = process.env.PREFIX;
 
 const client = new Discord.Client({
     intents: [

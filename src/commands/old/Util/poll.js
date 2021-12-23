@@ -7,7 +7,7 @@ module.exports = {
     cooldown: 5,
     description: "הבוט פותח סקר",
     usage: "poll <the poll title>",
-    async execute(bot, msg, args,){
+    async execute(msg, args, client, Discord){
         if(args[1]){
             let msgArgs = args.slice(1).join(" ");
             msg.channel.send("📋 " + "**" + msgArgs + "**").then(messageReaction => {

@@ -6,7 +6,7 @@ module.exports = {
 	category: 'info',
 	description: 'Displays a full list of bot commands.',
 	usage: 'commands',
-	async execute(client, message){
+	async execute(message, args, client, Discord){
 		return getAll(client, message);
 	}
 };

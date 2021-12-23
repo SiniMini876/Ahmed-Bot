@@ -6,7 +6,7 @@ module.exports = {
     cooldown: 10,
     usage: "!suggest `<The thing that you want to suggest>`",
     description: "Creates a suggestion for something, the suggestion will sent to the Mods.",
-    async execute(bot, msg, args){
+    async execute(msg, args, client, Discord){
         if(!args.length) return msg.channel.send('תכתוב את ההצעה')
         let channel = msg.guild.channels.cache.find(c => c.id === '816582689808318484');
 

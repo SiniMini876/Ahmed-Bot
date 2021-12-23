@@ -7,7 +7,7 @@ module.exports = {
   cooldown: 10,
   usage: "!mute <second(s) / minute(s) / hour(s)>",
   description: "אם אתה לא מוד \ OP אין לך שום סיבה להשתמש בזה, תקרא לסיני לעזרה",
-  async execute(bot, msg, args, ms, mc){ 
+  async execute(msg, args, client, Discord, ms, mc){ 
 
         // creating a person variable
         var person = msg.guild.member(msg.mentions.users.first() || msg.guild.members.get(args[1]))

@@ -5,7 +5,7 @@ module.exports = {
 	description: 'הבוט פותח חדר חדש ננדש רק לכם ולמי שתרצו שתכניסו',
     usage: 'createroom <כמה אנשים בחדר>',
     usage2: 'cr <כמה אנשים בחדר>',
-    async execute(client, msg, args) {
+    async execute(msg, args, client, Discord) {
         if (!args[1])
             return msg.channel.send("אתה צריך לכתוב את המקסימום אנשים לחדר.");
 

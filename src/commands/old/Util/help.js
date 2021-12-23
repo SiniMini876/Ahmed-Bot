@@ -6,7 +6,7 @@ module.exports = {
   aliases: ["h"],
   cooldown: 5,
   description: "The bot sends an help page, like this one.",
-  async execute(bot, msg, args){ 
+  async execute(msg, args, bot, Discord){ 
 
 		if (args[1]) {
 			return getCMD(bot, msg, args[1]);
