@@ -14,9 +14,9 @@ const { canModifyQueue } = require("../../../Functions/canModifyQueue");module.e
         return void message.reply({ content: `🎧 | Current volume is **${queue.volume}**%!` });
     if (vol < 0 || vol > 100)
         return void message.reply({ content: "❌ | Volume range must be 0-100" });
-    const success = queue.setVolume(vol.value);
+    const success = queue.setVolume(vol);
     return void message.reply({
-        content: success ? `✅ | Volume set to **${vol.value}%**!` : "❌ | Something went wrong!"
+        content: success ? `✅ | Volume set to **${vol}%**!` : "❌ | Something went wrong!"
     });
   }
 };
