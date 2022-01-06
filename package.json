@@ -16,10 +16,10 @@
   "author": "SiniMini876",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zealcordNation/music-bot-example/issues"
+    "url": "https://github.com/SiniMini876/Ahmed-Bot/issues"
   },
-  "homepage": "https://github.com/zealcordNation/music-bot-example#readme",
-  "repository": "https://github.com/SiniMini876/Discord-Bot-Ahmed",
+  "homepage": "https://github.com/SiniMini876/Ahmed-Bot#readme",
+  "repository": "https://github.com/SiniMini876/Ahmed-Bot",
   "dependencies": {
     "@discordjs/opus": "^0.3.3",
     "axios": "^0.24.0",
@@ -34,8 +34,5 @@
   },
   "scripts": {
     "start": "node src/index.js",
-    "node-update": "npm i --save-dev node@16 && npm config set prefix=$(pwd)/node_modules/node && export PATH=$(pwd)/node_modules/node/bin:$PATH",
-    "node-clean": "rm -rf node_modules && rm package-lock.json && npm cache clear --force && npm cache clean --force && npm i",
-    "node-update-then-clean": "npm run node-update && npm run node-clean"
   }
 }
