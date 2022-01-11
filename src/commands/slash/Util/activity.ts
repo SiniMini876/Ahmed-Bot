@@ -33,10 +33,6 @@ export const command: SlashCommand = {
                     name: 'Betrayal.io',
                 },
                 {
-                    value: '755600276941176913',
-                    name: 'YouTube Together',
-                },
-                {
                     value: '814288819477020702',
                     name: 'Fishington.io',
                 },
@@ -60,10 +56,10 @@ export const command: SlashCommand = {
                     value: '879863976006127627',
                     name: 'WordSnacks',
                 },
-//                 {
-//                     value: '880218394199220334',
-//                     name: 'Watch Together',
-//                 },
+                {
+                    value: '880218394199220334',
+                    name: 'Watch Together',
+                },
 //                 {
 //                     value: '852509694341283871',
 //                     name: 'Spellcast',
