@@ -1,14 +1,15 @@
 {
   "name": "ahmed-bot",
-  "version": "1.0.0",
-  "description": "INCREDIBLE bot for server, made by SiniMini876",
-  "main": "src/index.js",
+  "version": "2.0.0",
+  "description": "INCREDIBLE bot for servers, made by SiniMini876",
+  "main": "src/index.ts",
   "engines": {
     "node": "17.x"
   },
   "keywords": [
     "JavaScript",
     "DiscordJS",
+    "typescript",
     "NodeJS",
     "Discord",
     "SiniMini876"
@@ -16,26 +17,34 @@
   "author": "SiniMini876",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zealcordNation/music-bot-example/issues"
+    "url": "https://github.com/SiniMini876/Ahmed-Bot/issues"
   },
-  "homepage": "https://github.com/zealcordNation/music-bot-example#readme",
-  "repository": "https://github.com/SiniMini876/Discord-Bot-Ahmed",
+  "homepage": "https://github.com/SiniMini876/Ahmed-Bot#readme",
+  "repository": "https://github.com/SiniMini876/Ahmed-Bot",
   "dependencies": {
-    "@discordjs/opus": "^0.3.3",
+    "@discordjs/opus": "^0.7.0",
+    "ascii-table": "^0.0.9",
     "axios": "^0.24.0",
     "discord-player": "^5.2.0",
-    "discord.js": "^13.0.0",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "ffmpeg-static": "^4.4.0",
+    "discord.js": "^13.5.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2",
+    "ffmpeg-static": "^4.4.1",
     "lyrics-finder": "^21.7.0",
-    "mongoose": "^5.13.5",
-    "node-fetch": "^2.6.1"
+    "mongoose": "^6.1.5",
+    "node-fetch": "^3.1.0",
+    "table": "^6.8.0",
+    "yt-search": "^2.10.3"
   },
   "scripts": {
-    "start": "node src/index.js",
-    "node-update": "npm i --save-dev node@16 && npm config set prefix=$(pwd)/node_modules/node && export PATH=$(pwd)/node_modules/node/bin:$PATH",
-    "node-clean": "rm -rf node_modules && rm package-lock.json && npm cache clear --force && npm cache clean --force && npm i",
-    "node-update-then-clean": "npm run node-update && npm run node-clean"
+    "start": "ts-node src/index.ts",
+    "dev": "nodemon src/index.ts"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/yt-search": "^2.3.2",
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.4"
   }
 }
