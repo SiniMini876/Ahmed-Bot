@@ -26,44 +26,66 @@ export const command: SlashCommand = {
             choices: [
                 {
                     value: '755827207812677713',
-                    name: 'poker night',
+                    name: 'Poker Night',
                 },
                 {
                     value: '773336526917861400',
-                    name: 'betrayal.io',
+                    name: 'Betrayal.io',
                 },
-                // {
-
-                // },
+                {
+                    value: '755600276941176913',
+                    name: 'YouTube Together',
+                },
                 {
                     value: '814288819477020702',
-                    name: 'fishington.io',
+                    name: 'Fishington.io',
                 },
                 {
                     value: '832012774040141894',
-                    name: 'chess in the Park',
+                    name: 'Chess in the Park',
                 },
                 {
-                    value: '880218394199220334',
-                    name: 'watch together',
+                    value: '832012854282158180',
+                    name: 'Putts Dis',
                 },
                 {
                     value: '878067389634314250',
-                    name: 'doodle crew',
+                    name: 'DoodleCrew',
                 },
                 {
                     value: '879863686565621790',
-                    name: 'letter tile',
+                    name: 'LetterTile',
                 },
                 {
                     value: '879863976006127627',
-                    name: 'word snacks',
+                    name: 'WordSnacks',
+                },
+                {
+                    value: '880218394199220334',
+                    name: 'Watch Together',
+                },
+                {
+                    value: '852509694341283871',
+                    name: 'Spellcast',
+                },
+                {
+                    value: '879863881349087252',
+                    name: 'Awkword',
+                },
+                {
+                    value: '832013003968348200',
+                    name: 'Checkers In The Park (New)',
+                },
+                {
+                    value: '879864070101172255',
+                    name: 'SketchyArtist (New)',
                 },
             ] as ApplicationCommandOptionChoice[],
         } as ApplicationCommandOptionData,
         {
             name: 'voicechannel',
-            description: 'The VC that the bot will activate OR a Channel that you already in.',
+            description:
+                'The VC that the bot will activate OR a Channel that you already in.',
             required: false,
             type: 'CHANNEL',
         },
@@ -78,12 +100,14 @@ export const command: SlashCommand = {
         let returnData = {
             code: 'none',
         };
-        let VCchannel
+        let VCchannel;
 
-        if(interaction.options.getChannel('voicechannel')){
-            VCchannel = interaction.options.getChannel('voicechannel') as VoiceChannel
+        if (interaction.options.getChannel('voicechannel')) {
+            VCchannel = interaction.options.getChannel(
+                'voicechannel'
+            ) as VoiceChannel;
         } else {
-            VCchannel = member.voice.channel as VoiceChannel
+            VCchannel = member.voice.channel as VoiceChannel;
         }
 
         axios({
