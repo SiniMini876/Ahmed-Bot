@@ -60,26 +60,26 @@ export const command: SlashCommand = {
                     value: '879863976006127627',
                     name: 'WordSnacks',
                 },
-                {
-                    value: '880218394199220334',
-                    name: 'Watch Together',
-                },
-                {
-                    value: '852509694341283871',
-                    name: 'Spellcast',
-                },
-                {
-                    value: '879863881349087252',
-                    name: 'Awkword',
-                },
-                {
-                    value: '832013003968348200',
-                    name: 'Checkers In The Park (New)',
-                },
-                {
-                    value: '879864070101172255',
-                    name: 'SketchyArtist (New)',
-                },
+//                 {
+//                     value: '880218394199220334',
+//                     name: 'Watch Together',
+//                 },
+//                 {
+//                     value: '852509694341283871',
+//                     name: 'Spellcast',
+//                 },
+//                 {
+//                     value: '879863881349087252',
+//                     name: 'Awkword',
+//                 },
+//                 {
+//                     value: '832013003968348200',
+//                     name: 'Checkers In The Park (New)',
+//                 },
+//                 {
+//                     value: '879864070101172255',
+//                     name: 'SketchyArtist (New)',
+//                 },
             ] as ApplicationCommandOptionChoice[],
         } as ApplicationCommandOptionData,
         {
