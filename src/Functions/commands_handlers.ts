@@ -12,7 +12,7 @@ export const handler = {
                 for (const dir of olddirs) {
                     const commands_files = readdirSync(
                         `src/commands/old/${dir}`
-                    ).filter((file) => file.endsWith('.ts'));
+                    ).filter((file) => file.endsWith('.ts' || '.js'));
                     for (const file of commands_files) {
                         const { command } = await import(
                             `../commands/old/${dir}/${file}`
@@ -32,7 +32,7 @@ export const handler = {
                 for (const dir of slashdirs) {
                     const commands_files = readdirSync(
                         `src/commands/slash/${dir}`
-                    ).filter((file) => file.endsWith('.ts'));
+                    ).filter((file) => file.endsWith('.ts' || '.js'));
                     for (const file of commands_files) {
                         const { command } = await import(
                             `../commands/slash/${dir}/${file}`

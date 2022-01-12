@@ -15,9 +15,7 @@ export const event: Event = {
 
         await (await import(`../../web/web`)).web.execute();
 
-        client.user!.setActivity('להרביץ ליהודים', {
-            type: 'PLAYING',
-        });
+        client.user!.setActivity("להרביץ ליהודים")
 
         client.player
 

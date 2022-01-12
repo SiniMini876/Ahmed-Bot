@@ -39,7 +39,7 @@ class ExtendedClient extends Client {
 
         for (const dir of eventdirs) {
             const event_files = readdirSync(`src/events/${dir}`).filter(
-                (file) => file.endsWith('.ts')
+                (file) => file.endsWith('.ts' || '.js')
             );
 
             for (const file of event_files) {
