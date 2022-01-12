@@ -2,7 +2,7 @@ import { CommandInteraction, GuildMember, TextChannel, Guild } from 'discord.js'
 import dotenv from 'dotenv';
 import Client from '../../../Client';
 dotenv.config();
-import heroku from '../../../Functions/deploytoheroku';
+// import heroku from '../../../Functions/deploytoheroku';
 import { SlashCommand } from '../../../Interfaces';
 
 export const command: SlashCommand = {
@@ -12,6 +12,6 @@ export const command: SlashCommand = {
         interaction.editReply(
             'The bot will be online soon, wait like 3 minutes ✅'
         );
-        heroku.deploy();
+        process.exit(1)
     },
 };

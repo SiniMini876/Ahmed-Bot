@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { SlashCommand } from '../../../Interfaces';
 import Client from '../../../Client';
 import {
@@ -10,6 +9,7 @@ import {
     ApplicationCommandOptionData,
     VoiceChannel,
 } from 'discord.js';
+import fetch from 'node-fetch';
 
 //value: '755600276941176913',
 //name: 'YouTube Together',
@@ -106,25 +106,29 @@ export const command: SlashCommand = {
             VCchannel = member.voice.channel as VoiceChannel;
         }
 
-        axios({
-            url: `https://discord.com/api/v8/channels/${VCchannel!.id}/invites`,
-            method: 'POST',
-            headers: {
-                Authorization: `Bot ${process.env.BOT_TOKEN}`,
-                'Content-Type': 'application/json',
-            },
-            data: {
-                max_age: 86400,
-                max_uses: 0,
-                target_application_id:
-                    interaction.options.getString('activity'),
-                target_type: 2,
-                temporary: false,
-                validate: null,
-            },
-        })
-            .then(async (res) => {
-                let invite = res.data;
+        await fetch(
+            `https://discord.com/api/v8/channels/${VCchannel.id}/invites`,
+            {
+                method: 'POST',
+                body: JSON.stringify({
+                    max_age: 86400,
+                    max_uses: 0,
+                    target_application_id:
+                        interaction.options.getString('activity'),
+                    target_type: 2,
+                    temporary: false,
+                    validate: null,
+                }),
+                headers: {
+                    Authorization: `Bot ${process.env.BOT_TOKEN}`,
+                    'Content-Type': 'application/json',
+                },
+            }
+        )
+            .then((res) => res.json())
+            .then((invite) => {
+                if (invite.error || !invite.code)
+                    throw new Error('An error occured while retrieving data !');
                 if (invite.code === 50013 || invite.code === '50013')
                     console.warn(
                         'Your bot lacks permissions to perform that action'
@@ -132,9 +136,10 @@ export const command: SlashCommand = {
                 returnData.code =
                     `https://discord.com/invite/${invite.code}` +
                     ' **To start the activity, press this link!**';
-            })
-            .then(async () => {
-                interaction.editReply(returnData.code);
+            });
+
+            interaction.editReply({
+                content: returnData.code
             });
     },
 };

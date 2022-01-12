@@ -7,7 +7,7 @@ import {
 } from 'discord.js';
 import Client from '../../../Client';
 import { SlashCommand } from '../../../Interfaces';
-import yts from 'yt-search';
+// import yts from 'yt-search';
 
 export const command: SlashCommand = {
     name: 'play',
@@ -30,15 +30,7 @@ export const command: SlashCommand = {
     ) {
         const query = interaction.options.getString('query') as string;
 
-        let song: string;
-        if (query?.search('https')) {
-            const r = await yts(query!);
-            song = r.videos[0].url
-        } else {
-            song = query
-        }
-
-        const searchResult = await client.player.search(song!, {
+        const searchResult = await client.player.search(query!, {
             requestedBy: interaction.user,
             searchEngine: QueryType.AUTO,
         });

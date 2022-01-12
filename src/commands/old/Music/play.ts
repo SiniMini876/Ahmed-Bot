@@ -1,6 +1,6 @@
 import { QueryType } from 'discord-player';
 import { GuildManager, GuildMember, Message, Sticker, User } from 'discord.js';
-import yts from 'yt-search';
+// import yts from 'yt-search';
 import Client from '../../../Client';
 import { Command } from '../../../Interfaces';
 
@@ -35,15 +35,7 @@ export const command: Command = {
 
         const query = args.join(' ');
 
-        let song: string;
-        if (query?.search('https')) {
-            const r = await yts(query!);
-            song = r.videos[0].url;
-        } else {
-            song = query;
-        }
-
-        const searchResult = await client.player.search(song!, {
+        const searchResult = await client.player.search(query!, {
             requestedBy: message.member?.user as User,
             searchEngine: QueryType.AUTO,
         });

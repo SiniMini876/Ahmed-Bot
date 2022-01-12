@@ -22,19 +22,17 @@
   "homepage": "https://github.com/SiniMini876/Ahmed-Bot#readme",
   "repository": "https://github.com/SiniMini876/Ahmed-Bot",
   "dependencies": {
+    "@discord-player/extractor": "^3.0.2",
     "@discordjs/opus": "^0.7.0",
-    "ascii-table": "^0.0.9",
-    "axios": "^0.24.0",
     "discord-player": "^5.2.0",
     "discord.js": "^13.5.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
     "ffmpeg-static": "^4.4.1",
     "lyrics-finder": "^21.7.0",
-    "mongoose": "^6.1.5",
-    "node-fetch": "^3.1.0",
+    "node-fetch": "^2.6.6",
     "table": "^6.8.0",
-    "yt-search": "^2.10.3"
+    "youtube-sr": "^4.1.11"
   },
   "scripts": {
     "start": "ts-node src/index.ts",

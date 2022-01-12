@@ -1,6 +1,6 @@
 import { Message } from "discord.js";
 import Client from "../../../Client";
-import deploytoheroku from "../../../Functions/deploytoheroku";
+// import deploytoheroku from "../../../Functions/deploytoheroku";
 import { Command } from "../../../Interfaces";
 
 export const command: Command = {
@@ -10,6 +10,6 @@ export const command: Command = {
     description: 'The bot restarts, should take a couple of minutes',
     async execute(client: Client, message: Message, args: string[]) {
         message.channel.send('The bot will be online soon, wait like 3 minutes ✅');
-        deploytoheroku.deploy();
+        process.exit(1)
     },
 };
