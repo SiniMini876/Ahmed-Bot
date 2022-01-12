@@ -12,6 +12,6 @@ export const command: SlashCommand = {
         interaction.editReply(
             'The bot will be online soon, wait like 3 minutes ✅'
         );
-        process.exit(1)
+        process.exit(0)
     },
 };

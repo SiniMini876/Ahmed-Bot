@@ -10,6 +10,6 @@ export const command: Command = {
     description: 'The bot restarts, should take a couple of minutes',
     async execute(client: Client, message: Message, args: string[]) {
         message.channel.send('The bot will be online soon, wait like 3 minutes ✅');
-        process.exit(1)
+        process.exit(0)
     },
 };
