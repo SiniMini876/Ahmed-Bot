@@ -1,1 +1,1 @@
-run = sh runtime.sh
+run = "sh runtime.sh"
