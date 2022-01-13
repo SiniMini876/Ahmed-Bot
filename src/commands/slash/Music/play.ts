@@ -40,10 +40,16 @@ export const command: SlashCommand = {
                 content: `❌ | Track **${query}** not found!`,
             });
 
+        let queue = await client.player.getQueue(interaction.guild!)
 
-        const queue = await client.player.createQueue(interaction.guild!, {
-            metadata: interaction,
-        });
+        if(!queue) {
+            queue = await client.player.createQueue(interaction.guild!, {
+                metadata: interaction,
+            });
+        } else {
+            queue.metadata = interaction
+        }
+
 
         try {
             if (!queue.connection) await queue.connect(member.voice.channel!);

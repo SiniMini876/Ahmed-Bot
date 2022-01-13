@@ -1,4 +1,4 @@
-import { Message } from 'discord.js';
+import { Message, MessageEmbed, User } from 'discord.js';
 import Client from '../../../Client';
 import { Command } from '../../../Interfaces';
 
@@ -16,28 +16,30 @@ export const command: Command = {
         const progress = queue.createProgressBar();
         const perc = queue.getPlayerTimestamp();
 
-        return void message.reply({
-            embeds: [
-                {
-                    title: 'Now Playing',
-                    description: `🎶 | **${queue.current.title}**! (\`${perc.progress}%\`)`,
-                    fields: [
-                        {
-                            name: '*Volume: *',
-                            value: `\`${queue.volume.toString()}\``
-                        },
-                        {
-                            name: '\u200b',
-                            value: progress,
-                        },
-                        {
-                            name: "Up next: ",
-                            value: queue.tracks[1]!.title || "None"
-                        }
-                    ],
-                    color: 0xffffff,
-                },
-            ],
+        let track1;
+
+        if (!queue.tracks[1]) track1 = 'None';
+        else track1 = queue.tracks[1]!.title;
+
+        let embed = new MessageEmbed()
+            .setTitle('Now Playing')
+            .setColor(0xffffff)
+            .addField('*Volume: *', `\`${queue.volume.toString()}\``)
+            .addField('\u200b', progress)
+            .addField('Up next: ', track1)
+            .setThumbnail(queue.current.thumbnail)
+            .setAuthor({
+                name: queue.current.author,
+                url: queue.current.description,
+                iconURL: queue.current.thumbnail,
+            })
+            .setFooter({
+                text: 'Made by SiniMini876',
+                iconURL: ((client.application!.owner! as User).avatarURL) as any,
+            });
+
+        return void message.channel.send({
+            embeds: [embed],
         });
     },
 };

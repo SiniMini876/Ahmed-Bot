@@ -1,0 +1,37 @@
+{
+    "ECO 99FM": {
+        "url": "https://eco01.livecdn.biz/ecolive/99fm/icecast.audio?DIST=TuneIn&TGT=TuneIn&maxServers=2&gdpr=0&us_privacy=1YNY&partnertok=eyJhbGciOiJIUzI1NiIsImtpZCI6InR1bmVpbiIsInR5cCI6IkpXVCJ9.eyJ0cnVzdGVkX3BhcnRuZXIiOnRydWUsImlhdCI6MTY0MjA2NDkzMiwiaXNzIjoidGlzcnYifQ.nqyfdpP2tM5HJh1rBiWjLEWKSLLcW2ZhTsq2IpT3J60",
+        "thumbnail": "https://gold2.co.il/wp-content/uploads/2020/01/%D7%90%D7%A7%D7%95-99.png",
+        "homepage": "https://eco99fm.maariv.co.il/"
+    },
+    "Radios100FM": {
+        "url": "https://eco01.livecdn.biz/ecolive/99fm/icecast.audio?DIST=TuneIn&TGT=TuneIn&maxServers=2&gdpr=0&us_privacy=1YNY&partnertok=eyJhbGciOiJIUzI1NiIsImtpZCI6InR1bmVpbiIsInR5cCI6IkpXVCJ9.eyJ0cnVzdGVkX3BhcnRuZXIiOnRydWUsImlhdCI6MTY0MjA2NDkzMiwiaXNzIjoidGlzcnYifQ.nqyfdpP2tM5HJh1rBiWjLEWKSLLcW2ZhTsq2IpT3J60",
+        "thumbnail": "https://d20x387xvo6jlt.cloudfront.net/wp-content/uploads/2021/04/30Logo.png",
+        "homepage": "https://www.100fm.co.il/"
+    },
+    "Kan 88FM": {
+        "url": "https://kanliveicy.media.kan.org.il/icy/749623_mp3?providername=tunein&DIST=TuneIn&TGT=TuneIn&maxServers=2&gdpr=0&us_privacy=1YNY&partnertok=eyJhbGciOiJIUzI1NiIsImtpZCI6InR1bmVpbiIsInR5cCI6IkpXVCJ9.eyJ0cnVzdGVkX3BhcnRuZXIiOnRydWUsImlhdCI6MTY0MjA2NTMxMSwiaXNzIjoidGlzcnYifQ.TrNE7vJK4MtNPQbVCnVh1WXeH7920YQ2Lvwt3zHF3go",
+        "thumbnail": "https://static.rlive.co.il/storage/uploads/stations/tdGoDH47Dvfknxn1UDfuqhgqFr8XTxTIlxVNhJPn.png",
+        "homepage": "https://www.kan.org.il/live/radio.aspx?stationid=4"
+    },
+    "Galei Zahal": {
+        "url": "https://glzwizzlv.bynetcdn.com/glz_mp3?DIST=TuneIn&TGT=TuneIn&maxServers=2&gdpr=0&us_privacy=1YNY&partnertok=eyJhbGciOiJIUzI1NiIsImtpZCI6InR1bmVpbiIsInR5cCI6IkpXVCJ9.eyJ0cnVzdGVkX3BhcnRuZXIiOnRydWUsImlhdCI6MTY0MjA2NTM4NiwiaXNzIjoidGlzcnYifQ.kARgXB5I0C6_KwZi18CTdGOPZNDIvTTDmm87XYhsGxA",
+        "thumbnail": "https://cdn-radiotime-logos.tunein.com/s24906g.png",
+        "homepage": "https://glz.co.il/"
+    },
+    "GLGLZ": {
+        "url": "https://glzwizzlv.bynetcdn.com/glglz_mp3?DIST=TuneIn&TGT=TuneIn&maxServers=2&gdpr=0&us_privacy=1YNY&partnertok=eyJhbGciOiJIUzI1NiIsImtpZCI6InR1bmVpbiIsInR5cCI6IkpXVCJ9.eyJ0cnVzdGVkX3BhcnRuZXIiOnRydWUsImlhdCI6MTY0MjA2NTQ0OCwiaXNzIjoidGlzcnYifQ.-TPkAcNsir0GTbex34PY80dxdLMEGSCc_RXiAGr-KUU",
+        "thumbnail": "https://upload.wikimedia.org/wikipedia/he/thumb/4/40/Galgalz.svg/1200px-Galgalz.svg.png",
+        "homepage": "https://glz.co.il/%D7%92%D7%9C%D7%92%D7%9C%D7%A6"
+    },
+    "103FM": {
+        "url": "https://cdn.cybercdn.live/103FM/Live/icecast.audio?DIST=TuneIn&TGT=TuneIn&maxServers=2&gdpr=0&us_privacy=1YNY&partnertok=eyJhbGciOiJIUzI1NiIsImtpZCI6InR1bmVpbiIsInR5cCI6IkpXVCJ9.eyJ0cnVzdGVkX3BhcnRuZXIiOnRydWUsImlhdCI6MTY0MjA2NTUxMiwiaXNzIjoidGlzcnYifQ.WSH_y9L8th8m_Kp8v-jDVPiUHt9GWhDoOj211d1hot0",
+        "thumbnail": "https://pbs.twimg.com/profile_images/1380283977957773313/1hGQm_hr_400x400.jpg",
+        "homepage": "https://103fm.maariv.co.il/"
+    },
+    "KanReshet ב": {
+        "url": "https://kanliveicy.media.kan.org.il/icy/749624_mp3?providername=chrom_ex",
+        "thumbnail": "https://cdn-profiles.tunein.com/s24889/images/logod.jpg?t=155853",
+        "homepage": "https://www.kan.org.il/live/radio.aspx?stationid=3"
+    }
+}

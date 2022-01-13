@@ -1,9 +1,16 @@
 import express from 'express';
 import { Player, Playlist, Queue, Track } from 'discord-player';
-import Discord, { ApplicationCommandData, ClientUser, Message, User } from 'discord.js';
+import Discord, {
+    ApplicationCommandData,
+    ClientUser,
+    Message,
+    MessageEmbed,
+    User,
+} from 'discord.js';
 import Client from '../../Client';
 import { Event } from '../../Interfaces';
-import path from 'path';
+import radio from '../../assets/radio.json';
+import { type } from 'os';
 
 const inter = Discord.CommandInteraction;
 
@@ -11,11 +18,14 @@ export const event: Event = {
     name: 'ready',
     execute: async (client: Client) => {
         // list slash commands
-        await (await import("../../Functions/commands_handlers")).handler.execute(client)
+
+        await (
+            await import('../../Functions/commands_handlers')
+        ).handler.execute(client);
 
         await (await import(`../../web/web`)).web.execute();
 
-        client.user!.setActivity("להרביץ ליהודים")
+        client.user!.setActivity('להרביץ ליהודים');
 
         client.player
 
@@ -30,16 +40,9 @@ export const event: Event = {
             })
             .on('trackAdd', (queue: Queue, track: Track) => {
                 if (queue.metadata instanceof inter) {
-                    if (queue.tracks.length === 1)
-                        queue.metadata.editReply(
-                            '🎶 || A track has added to the queue: ' +
-                                track.title
-                        );
-                    else
-                        queue.metadata.followUp(
-                            '🎶 || A track has added to the queue: ' +
-                                track.title
-                        );
+                    queue.metadata.editReply(
+                        '🎶 || A track has added to the queue: ' + track.title
+                    );
                 } else {
                     if (queue.tracks.length === 1)
                         (queue.metadata as Message).channel.send(
@@ -55,6 +58,11 @@ export const event: Event = {
             })
 
             .on('trackStart', async (queue: Queue, track: Track) => {
+
+                client.application?.fetch();
+
+                let owner = client.application?.owner as User;
+
                 let playBUT = new Discord.MessageButton()
                     .setStyle('PRIMARY')
                     .setEmoji('▶')
@@ -95,11 +103,25 @@ export const event: Event = {
                     muteBUT,
                     stopBUT
                 );
+                let embed = new MessageEmbed()
+                    .setTitle(`Now Playing ${track.title}...`)
+                    .setColor(0xffffff)
+                    .addField('*Volume: *', `\`${queue.volume.toString()}\``)
+                    .setThumbnail(queue.current.thumbnail)
+                    .setAuthor({
+                        name: track.author,
+                        url: track.description,
+                        iconURL: track.thumbnail,
+                    })
+                    .setFooter({
+                        text: 'Made by SiniMini876',
+                        iconURL: owner.avatarURL as any,
+                    });
                 let msg: Message;
                 let msg2: Message;
                 if (queue.metadata instanceof inter) {
                     msg = (await queue.metadata.followUp({
-                        content: `Now playing ${track.title}...`,
+                        embeds: [embed],
                         components: [row],
                     })) as Message;
                     msg2 = (await queue.metadata.followUp({
@@ -112,15 +134,22 @@ export const event: Event = {
                         components: [row],
                     })) as Message;
                     msg2 = (await (queue.metadata as Message).channel.send({
-                        content: `More buttons to control...`,
+                        embeds: [embed],
                         components: [row2],
                     })) as Message;
                 }
 
-                setTimeout(() => {
-                    msg.delete();
-                    msg2.delete();
-                }, track.durationMS);
+                if (Object.keys(radio).find((key) => key === track.author)) {
+                    setTimeout(() => {
+                        msg.delete();
+                        msg2.delete();
+                    }, 3.6e6);
+                } else {
+                    setTimeout(() => {
+                        msg.delete();
+                        msg2.delete();
+                    }, track.durationMS);
+                }
             });
     },
 };
