@@ -12,7 +12,7 @@ import { SlashCommand } from '../../../Interfaces';
 export const command: SlashCommand = {
     name: 'play',
     description:
-        'Plays a song from Youtube / Spotify / SoundCloud / Arbitrary',
+        'Play audio from YouTube, Spotify, Apple Music (Can take a long time for long playlists), SC and mp3',
     options: [
         {
             name: 'query',
@@ -40,16 +40,15 @@ export const command: SlashCommand = {
                 content: `❌ | Track **${query}** not found!`,
             });
 
-        let queue = await client.player.getQueue(interaction.guild!)
+        let queue = await client.player.getQueue(interaction.guild!);
 
-        if(!queue) {
+        if (!queue) {
             queue = await client.player.createQueue(interaction.guild!, {
                 metadata: interaction,
             });
         } else {
-            queue.metadata = interaction
+            queue.metadata = interaction;
         }
-
 
         try {
             if (!queue.connection) await queue.connect(member.voice.channel!);

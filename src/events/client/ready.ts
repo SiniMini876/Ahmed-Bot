@@ -29,6 +29,29 @@ export const event: Event = {
 
         client.player
 
+            .on("connectionError", (queue: Queue, err: Error) => {
+                if (queue.metadata instanceof inter) {
+                    queue.metadata.followUp('🎶 || There was an error, probably something related to bandwith. :/');
+                    console.log(err)
+                } else {
+                    (queue.metadata as Message).channel.send(
+                        '🎶 || There was an error, probably something related to bandwith. :/'
+                    );
+                    console.log(err)
+                }
+            })
+            .on("error", (queue: Queue, err: Error) => {
+                if (queue.metadata instanceof inter) {
+                    queue.metadata.followUp('🎶 || There was an error, probably something related to bandwith. :/');
+                    console.log(err)
+                } else {
+                    (queue.metadata as Message).channel.send(
+                        '🎶 || There was an error, probably something related to bandwith. :/'
+                    );
+                    console.log(err)
+                }
+            })
+
             .on('queueEnd', (queue: Queue) => {
                 if (queue.metadata instanceof inter) {
                     queue.metadata.followUp('🎶 || The queue has ended!');

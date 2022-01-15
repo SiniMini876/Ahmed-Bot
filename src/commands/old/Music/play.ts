@@ -1,4 +1,3 @@
-import { QueryType } from 'discord-player';
 import { GuildManager, GuildMember, Message, Sticker, User } from 'discord.js';
 // import yts from 'yt-search';
 import Client from '../../../Client';
@@ -8,7 +7,8 @@ export const command: Command = {
     name: 'play',
     cooldown: 5,
     aliases: ['p'],
-    description: 'Plays audio from YouTube or Soundcloud',
+    description:
+        'Plays audio from YouTube, Spotify, Apple Music (This can take a long time to long playlists), Soundcloud and url that end with .mp3',
     usage: '!p <name of the song or URL>',
     execute: async (client: Client, message: Message, args: string[]) => {
         const { channel } = message.member!.voice;
@@ -37,7 +37,6 @@ export const command: Command = {
 
         const searchResult = await client.player.search(query!, {
             requestedBy: message.member?.user as User,
-            searchEngine: QueryType.AUTO,
         });
 
         if (!searchResult || !searchResult.tracks.length)

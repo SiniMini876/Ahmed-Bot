@@ -3,23 +3,19 @@ import {
     GuildMember,
     TextChannel,
     Guild,
+    Message,
+    MessageEmbedImage,
 } from 'discord.js';
 import Client from '../../../Client';
-import { SlashCommand } from '../../../Interfaces';
+import { Command } from '../../../Interfaces';
 
-export const command: SlashCommand = {
+export const command: Command = {
     name: 'queue',
     description: 'See the queue',
-    async execute(
-        client: Client,
-        interaction: CommandInteraction,
-        member: GuildMember,
-        channel: TextChannel,
-        guild: Guild
-    ) {
-        const queue = client.player.getQueue(interaction.guildId!);
+    async execute(client: Client, message: Message, args: any[]) {
+        const queue = client.player.getQueue(message.guildId!);
         if (!queue || !queue.playing)
-            return void interaction.editReply({
+            return void message.channel.send({
                 content: '❌ | No music is being played!',
             });
         const currentTrack = queue.current;
@@ -29,10 +25,13 @@ export const command: SlashCommand = {
                 return `${i + 1}. **${m.title}** ([link](${m.url}))`;
             });
 
-        return void interaction.editReply({
+        return void message.channel.send({
             embeds: [
                 {
                     title: 'Server Queue',
+                    thumbnail: {
+                        url: currentTrack.playlist?.thumbnail ?? '',
+                    },
                     description: `${tracks.join('\n')}${
                         queue.tracks.length > tracks.length
                             ? `\n...${
@@ -46,9 +45,6 @@ export const command: SlashCommand = {
                               }`
                             : ''
                     }`,
-                    thumbnail: {
-                        url: currentTrack.playlist?.thumbnail ?? '',
-                    },
                     color: '#ffb217',
                     fields: [
                         {
