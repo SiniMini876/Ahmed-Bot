@@ -45,6 +45,8 @@ export const command: SlashCommand = {
         if (!queue) {
             queue = await client.player.createQueue(interaction.guild!, {
                 metadata: interaction,
+                leaveOnEmpty: true,
+                leaveOnEmptyCooldown: 5000,
             });
         } else {
             queue.metadata = interaction;

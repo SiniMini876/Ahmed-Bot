@@ -1,0 +1,17 @@
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "env": {
+        "node": true,
+        "commonjs": true,
+        "browser": true
+    },
+    "rules": {
+        "semi": "error",
+        "quotes": ["error", "double"],
+        "no-var": "error",
+        "no-unused-vars": "error",
+        "no-unused-labels": "error",
+        "no-unused-expressions": "error"
+    }
+}

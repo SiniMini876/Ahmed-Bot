@@ -1,16 +1,15 @@
-import Client from '../Client';
+/* eslint-disable no-unused-vars */
+import Client from "../Client";
 import {
-    ApplicationCommandData,
     ApplicationCommandOptionData,
-    ApplicationCommandType,
     BaseApplicationCommandData,
     ChatInputApplicationCommandData,
     CommandInteraction,
     Guild,
     GuildMember,
     TextChannel,
-} from 'discord.js';
-import { ApplicationCommandTypes } from 'discord.js/typings/enums';
+} from "discord.js";
+import { ApplicationCommandTypes } from "discord.js/typings/enums";
 
 interface execute {
     (
@@ -21,12 +20,14 @@ interface execute {
         guild: Guild
     ): any;
 }
-export interface SlashCommand extends ChatInputApplicationCommandData, BaseApplicationCommandData {
+export interface SlashCommand
+    extends ChatInputApplicationCommandData,
+        BaseApplicationCommandData {
     name: string;
     description: string;
     guilds?: [];
     cooldown?: number;
-    type?: 'CHAT_INPUT' | ApplicationCommandTypes.CHAT_INPUT;
+    type?: "CHAT_INPUT" | ApplicationCommandTypes.CHAT_INPUT;
     options?: ApplicationCommandOptionData[];
     defaultPermission?: boolean;
     execute: execute;

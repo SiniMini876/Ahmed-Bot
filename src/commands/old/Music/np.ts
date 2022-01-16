@@ -15,6 +15,7 @@ export const command: Command = {
 
         const progress = queue.createProgressBar();
         const perc = queue.getPlayerTimestamp();
+        const currentTrack = queue.current;
 
         let track1;
 
@@ -22,7 +23,7 @@ export const command: Command = {
         else track1 = queue.tracks[1]!.title;
 
         let embed = new MessageEmbed()
-            .setTitle('Now Playing')
+            .setTitle(`🎶 Now Playing | [**${currentTrack.title}**](${currentTrack.url})`)
             .setColor(0xffffff)
             .addField('*Volume: *', `\`${queue.volume.toString()}\``)
             .addField('\u200b', progress)

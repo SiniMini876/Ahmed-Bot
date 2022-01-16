@@ -46,6 +46,8 @@ export const command: Command = {
 
         const queue = await client.player.createQueue(message.guild!, {
             metadata: message,
+            leaveOnEmpty: true,
+            leaveOnEmptyCooldown: 5000,
         });
 
         try {
