@@ -2,7 +2,6 @@
   "name": "ahmed-bot",
   "version": "2.0.0",
   "description": "INCREDIBLE bot for servers, made by SiniMini876",
-  "main": "src/index.ts",
   "engines": {
     "node": "17.x"
   },
@@ -25,7 +24,6 @@
     "@discord-player/extractor": "^3.0.2",
     "@discordjs/opus": "^0.7.0",
     "axios": "^0.24.0",
-    "cheerio": "^1.0.0-rc.10",
     "discord-player": "^5.2.0",
     "discord.js": "^13.5.1",
     "dotenv": "^10.0.0",
@@ -35,10 +33,12 @@
     "table": "^6.8.0"
   },
   "scripts": {
-    "start": "ts-node src/index.ts",
+    "start": "node dist/index.js",
+    "ts": "ts-node src/index.ts",
     "dev": "nodemon src/index.ts",
     "build": "tsc",
-    "lint": "eslint ."
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "eslint src/**"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",

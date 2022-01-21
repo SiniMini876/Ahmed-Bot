@@ -1,6 +1,9 @@
 {
     "root": true,
     "parser": "@typescript-eslint/parser",
+    "plugins": [
+        "@typescript-eslint/eslint-plugin"
+    ],
     "env": {
         "node": true,
         "commonjs": true,
@@ -12,6 +15,7 @@
         "no-var": "error",
         "no-unused-vars": "error",
         "no-unused-labels": "error",
-        "no-unused-expressions": "error"
+        "no-unused-expressions": "error",
+        "no-console": "warn"
     }
 }
