@@ -2,9 +2,16 @@
     "configurations": [
         {
             "type": "node-terminal",
-            "name": "Launch Ahmed",
+            "name": "Build",
             "request": "launch",
-            "command": "npm start",
+            "command": "npm run build",
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "node-terminal",
+            "name": "Debug Ahmed",
+            "request": "launch",
+            "command": "npm run dev",
             "cwd": "${workspaceFolder}"
         }
     ]
