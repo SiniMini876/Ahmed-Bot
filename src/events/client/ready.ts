@@ -1,9 +1,10 @@
+/* eslint-disable no-console */
 import { Queue, Track } from "discord-player";
 import Discord, { Message, MessageEmbed, User } from "discord.js";
 import Client from "../../Client";
 import { Event } from "../../Interfaces";
 import radio from "../../assets/radio.json";
-import { AppleMusic } from "@discord-player/extractor";
+// import { AppleMusic } from "@discord-player/extractor";
 
 const inter = Discord.CommandInteraction;
 
@@ -20,7 +21,7 @@ export const event: Event = {
 
         client.user!.setActivity("להרביץ ליהודים");
 
-        client.player.use("applemusic", AppleMusic);
+        // client.player.use("applemusic", AppleMusic);
 
         client.player
 
