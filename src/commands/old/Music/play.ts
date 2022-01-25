@@ -1,20 +1,21 @@
-import { GuildManager, GuildMember, Message, Sticker, User } from 'discord.js';
-// import yts from 'yt-search';
-import Client from '../../../Client';
-import { Command } from '../../../Interfaces';
+/* eslint-disable no-console */
+/* eslint-disable no-unused-expressions */
+import { Message, User } from "discord.js";
+import Client from "../../../Client";
+import { Command } from "../../../Interfaces";
 
 export const command: Command = {
-    name: 'play',
+    name: "play",
     cooldown: 5,
-    aliases: ['p'],
+    aliases: ["p"],
     description:
-        'Plays audio from YouTube, Spotify, Apple Music (This can take a long time to long playlists), Soundcloud and url that end with .mp3',
-    usage: '!p <name of the song or URL>',
+        "Plays audio from YouTube, Spotify, Apple Music (This can take a long time to long playlists), Soundcloud and url that end with .mp3",
+    usage: "!p <name of the song or URL>",
     execute: async (client: Client, message: Message, args: string[]) => {
         const { channel } = message.member!.voice;
         if (!channel)
             return message
-                .reply('You need to join a voice channel first!')
+                .reply("You need to join a voice channel first!")
                 .catch(console.error);
         if (!args.length)
             return message
@@ -24,16 +25,16 @@ export const command: Command = {
                 .catch(console.error);
 
         const permissions = channel.permissionsFor(client.user!);
-        if (!permissions!.has('CONNECT'))
+        if (!permissions!.has("CONNECT"))
             return message.reply(
-                'Cannot connect to voice channel, missing permissions'
+                "Cannot connect to voice channel, missing permissions"
             );
-        if (!permissions!.has('SPEAK'))
+        if (!permissions!.has("SPEAK"))
             return message.reply(
-                'I cannot speak in this voice channel, make sure I have the proper permissions!'
+                "I cannot speak in this voice channel, make sure I have the proper permissions!"
             );
 
-        const query = args.join(' ');
+        const query = args.join(" ");
 
         const searchResult = await client.player.search(query!, {
             requestedBy: message.member?.user as User,
@@ -56,7 +57,7 @@ export const command: Command = {
         } catch {
             client.player.deleteQueue(message.guildId!);
             return message.channel.send({
-                content: 'Could not join your voice channel!',
+                content: "Could not join your voice channel!",
             });
         }
 
@@ -64,5 +65,7 @@ export const command: Command = {
             ? queue.addTracks(searchResult.tracks)
             : queue.addTrack(searchResult.tracks[0]);
         if (!queue.playing) await queue.play();
+
+        queue.setVolume(70);
     },
 };

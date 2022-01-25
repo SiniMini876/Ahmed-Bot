@@ -1,23 +1,25 @@
-import { Player, QueryType, QueueRepeatMode } from 'discord-player';
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-unused-expressions */
+import { QueryType } from "discord-player";
 import {
     CommandInteraction,
     GuildMember,
     TextChannel,
     Guild,
-} from 'discord.js';
-import Client from '../../../Client';
-import { SlashCommand } from '../../../Interfaces';
+} from "discord.js";
+import Client from "../../../Client";
+import { SlashCommand } from "../../../Interfaces";
 // import yts from 'yt-search';
 
 export const command: SlashCommand = {
-    name: 'play',
+    name: "play",
     description:
-        'Play audio from YouTube, Spotify, Apple Music (Can take a long time for long playlists), SC and mp3',
+        "Play audio from YouTube, Spotify, Apple Music (Can take a long time for long playlists), SC and mp3",
     options: [
         {
-            name: 'query',
-            type: 'STRING',
-            description: 'The song you want to play',
+            name: "query",
+            type: "STRING",
+            description: "The song you want to play",
             required: true,
         },
     ],
@@ -25,10 +27,10 @@ export const command: SlashCommand = {
         client: Client,
         interaction: CommandInteraction,
         member: GuildMember,
-        channel: TextChannel,
-        guild: Guild
+        _channel: TextChannel,
+        _guild: Guild
     ) {
-        const query = interaction.options.getString('query') as string;
+        const query = interaction.options.getString("query") as string;
 
         const searchResult = await client.player.search(query!, {
             requestedBy: interaction.user,
@@ -57,7 +59,7 @@ export const command: SlashCommand = {
         } catch {
             client.player.deleteQueue(interaction.guildId!);
             return interaction.editReply({
-                content: 'Could not join your voice channel!',
+                content: "Could not join your voice channel!",
             });
         }
 
@@ -65,5 +67,7 @@ export const command: SlashCommand = {
             ? queue.addTracks(searchResult.tracks)
             : queue.addTrack(searchResult.tracks[0]);
         if (!queue.playing) await queue.play();
+        
+        queue.setVolume(70);
     },
 };
