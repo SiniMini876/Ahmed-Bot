@@ -1,18 +1,17 @@
-import { QueueRepeatMode } from 'discord-player';
+import { QueueRepeatMode } from "discord-player";
 import {
     ApplicationCommandData,
     ClientApplication,
     Guild,
     Message,
-    Sticker,
     User,
-} from 'discord.js';
-import Client from '../../../Client';
-import { Command } from '../../../Interfaces';
+} from "discord.js";
+import Client from "../../../Client";
+import { Command } from "../../../Interfaces";
 
 export const command: Command = {
-    name: 'deploy',
-    async execute(client: Client, message: Message, args: string[]) {
+    name: "deploy",
+    async execute(client: Client, message: Message) {
         if (!client.application?.owner) await client.application?.fetch();
 
         let owner = client.application?.owner as User;
@@ -20,175 +19,175 @@ export const command: Command = {
         if (message.author.id === owner.id) {
             const data: ApplicationCommandData[] = [
                 {
-                    name: 'activity',
+                    name: "activity",
                     description: "Let's you create an Activity in a VC!",
                     options: [
                         {
-                            name: 'channel',
-                            description: 'The VC that the bot will activate',
+                            name: "channel",
+                            description: "The VC that the bot will activate",
                             required: true,
-                            type: 'CHANNEL',
+                            type: "CHANNEL",
                         },
                         {
-                            name: 'activity',
-                            description: 'Which activity do you want to play.',
+                            name: "activity",
+                            description: "Which activity do you want to play.",
                             required: true,
-                            type: 'STRING',
+                            type: "STRING",
                             choices: [
                                 {
-                                    value: '755827207812677713',
-                                    name: 'Poker Night',
+                                    value: "755827207812677713",
+                                    name: "Poker Night",
                                 },
                                 {
-                                    value: '773336526917861400',
-                                    name: 'Betrayal.io',
+                                    value: "773336526917861400",
+                                    name: "Betrayal.io",
                                 },
                                 // {
                                 //     value: '755600276941176913',
                                 //     name: 'YouTube Together',
                                 // },
                                 {
-                                    value: '814288819477020702',
-                                    name: 'Fishington.io',
+                                    value: "814288819477020702",
+                                    name: "Fishington.io",
                                 },
                                 {
-                                    value: '832012774040141894',
-                                    name: 'Chess in the Park',
+                                    value: "832012774040141894",
+                                    name: "Chess in the Park",
                                 },
                                 {
-                                    value: '880218394199220334',
-                                    name: 'Watch Together',
+                                    value: "880218394199220334",
+                                    name: "Watch Together",
                                 },
                                 {
-                                    value: '878067389634314250',
-                                    name: 'Doodle Crew',
+                                    value: "878067389634314250",
+                                    name: "Doodle Crew",
                                 },
                                 {
-                                    value: '879863686565621790',
-                                    name: 'Letter Tile',
+                                    value: "879863686565621790",
+                                    name: "Letter Tile",
                                 },
                                 {
-                                    value: '879863976006127627',
-                                    name: 'Word Snacks',
+                                    value: "879863976006127627",
+                                    name: "Word Snacks",
                                 },
                             ],
                         },
                     ],
                 },
                 {
-                    name: 'createroom',
+                    name: "createroom",
                     description:
                         "Let's you create a unique room just for you and the number of people you set!",
                     options: [
                         {
-                            name: 'maximumpeople',
+                            name: "maximumpeople",
                             description:
-                                'The maximum amount of people that can join!',
+                                "The maximum amount of people that can join!",
                             required: true,
-                            type: 'NUMBER',
+                            type: "NUMBER",
                         },
                     ],
                 },
                 {
-                    name: 'poll',
-                    description: 'Creates a poll!',
+                    name: "poll",
+                    description: "Creates a poll!",
                     options: [
                         {
-                            name: 'poll',
-                            description: 'The question that you want to ask!',
+                            name: "poll",
+                            description: "The question that you want to ask!",
                             required: true,
-                            type: 'STRING',
+                            type: "STRING",
                         },
                     ],
                 },
                 {
-                    name: 'kesem',
-                    description: '!קונכיית הקסם',
+                    name: "kesem",
+                    description: "!קונכיית הקסם",
                     options: [
                         {
-                            name: 'השאלה',
-                            description: 'השאלה שאתה רוצה לשאול',
+                            name: "השאלה",
+                            description: "השאלה שאתה רוצה לשאול",
                             required: true,
-                            type: 'STRING',
+                            type: "STRING",
                         },
                     ],
                 },
                 {
-                    name: 'clear',
+                    name: "clear",
                     description:
-                        'Deletes the amount of the message you want to delete.',
+                        "Deletes the amount of the message you want to delete.",
                     options: [
                         {
-                            name: 'amount',
+                            name: "amount",
                             description:
-                                'The amount of the message you want to delete.',
+                                "The amount of the message you want to delete.",
                             required: true,
-                            type: 'NUMBER',
+                            type: "NUMBER",
                         },
                     ],
                 },
                 {
-                    name: 'play',
+                    name: "play",
                     description:
-                        'Plays a song from Youtube / Spotify / SoundCloud / Arbitrary',
+                        "Plays a song from Youtube / Spotify / SoundCloud / Arbitrary",
                     options: [
                         {
-                            name: 'query',
-                            type: 'STRING',
-                            description: 'The song you want to play',
+                            name: "query",
+                            type: "STRING",
+                            description: "The song you want to play",
                             required: true,
                         },
                     ],
                 },
                 {
-                    name: 'volume',
-                    description: 'Sets music volume',
+                    name: "volume",
+                    description: "Sets music volume",
                     options: [
                         {
-                            name: 'amount',
-                            type: 'NUMBER',
-                            description: 'The volume amount to set (0-100)',
+                            name: "amount",
+                            type: "NUMBER",
+                            description: "The volume amount to set (0-100)",
                             required: false,
                         },
                     ],
                 },
                 {
-                    name: 'remove',
-                    description: 'Remove a specific track out of the queue',
+                    name: "remove",
+                    description: "Remove a specific track out of the queue",
                     options: [
                         {
-                            name: 'tracknumber',
-                            type: 'NUMBER',
+                            name: "tracknumber",
+                            type: "NUMBER",
                             description:
-                                'The number of the track in the queue, you can check that out with /queue',
+                                "The number of the track in the queue, you can check that out with /queue",
                             required: true,
                         },
                     ],
                 },
                 {
-                    name: 'loop',
-                    description: 'Sets loop mode',
+                    name: "loop",
+                    description: "Sets loop mode",
                     options: [
                         {
-                            name: 'mode',
-                            type: 'INTEGER',
-                            description: 'Loop type',
+                            name: "mode",
+                            type: "INTEGER",
+                            description: "Loop type",
                             required: true,
                             choices: [
                                 {
-                                    name: 'Off',
+                                    name: "Off",
                                     value: QueueRepeatMode.OFF,
                                 },
                                 {
-                                    name: 'Track',
+                                    name: "Track",
                                     value: QueueRepeatMode.TRACK,
                                 },
                                 {
-                                    name: 'Queue',
+                                    name: "Queue",
                                     value: QueueRepeatMode.QUEUE,
                                 },
                                 {
-                                    name: 'Autoplay',
+                                    name: "Autoplay",
                                     value: QueueRepeatMode.AUTOPLAY,
                                 },
                             ],
@@ -196,166 +195,166 @@ export const command: Command = {
                     ],
                 },
                 {
-                    name: 'filter',
-                    description: 'Sets a filter',
+                    name: "filter",
+                    description: "Sets a filter",
                     options: [
                         {
-                            name: 'filter',
-                            type: 'STRING',
+                            name: "filter",
+                            type: "STRING",
                             description:
-                                'What filter do you want to put / remove',
+                                "What filter do you want to put / remove",
                             required: true,
                             choices: [
                                 {
-                                    name: 'bassboost',
-                                    value: 'bassboost',
+                                    name: "bassboost",
+                                    value: "bassboost",
                                 },
                                 {
-                                    name: '8d',
-                                    value: '8D',
+                                    name: "8d",
+                                    value: "8D",
                                 },
                                 {
-                                    name: 'vaporwave',
-                                    value: 'vaporwave',
+                                    name: "vaporwave",
+                                    value: "vaporwave",
                                 },
                                 {
-                                    name: 'nightcore',
-                                    value: 'nightcore',
+                                    name: "nightcore",
+                                    value: "nightcore",
                                 },
                                 {
-                                    name: 'phaser',
-                                    value: 'phaser',
+                                    name: "phaser",
+                                    value: "phaser",
                                 },
                                 {
-                                    name: 'vibrato',
-                                    value: 'vibrato',
+                                    name: "vibrato",
+                                    value: "vibrato",
                                 },
                                 {
-                                    name: 'tremolo',
-                                    value: 'tremolo',
+                                    name: "tremolo",
+                                    value: "tremolo",
                                 },
                                 {
-                                    name: 'reverse',
-                                    value: 'reverse',
+                                    name: "reverse",
+                                    value: "reverse",
                                 },
                                 {
-                                    name: 'normalizer',
-                                    value: 'normalizer',
+                                    name: "normalizer",
+                                    value: "normalizer",
                                 },
                                 {
-                                    name: 'pulsator',
-                                    value: 'pulsator',
+                                    name: "pulsator",
+                                    value: "pulsator",
                                 },
                                 {
-                                    name: 'subboost',
-                                    value: 'subboost',
+                                    name: "subboost",
+                                    value: "subboost",
                                 },
                                 {
-                                    name: 'subboost',
-                                    value: 'subboost',
+                                    name: "subboost",
+                                    value: "subboost",
                                 },
                                 {
-                                    name: 'haas',
-                                    value: 'haas',
+                                    name: "haas",
+                                    value: "haas",
                                 },
                                 {
-                                    name: 'mono',
-                                    value: 'mono',
+                                    name: "mono",
+                                    value: "mono",
                                 },
                                 {
-                                    name: 'mstlr',
-                                    value: 'mstlr',
+                                    name: "mstlr",
+                                    value: "mstlr",
                                 },
                                 {
-                                    name: 'mstrr',
-                                    value: 'mstrr',
+                                    name: "mstrr",
+                                    value: "mstrr",
                                 },
                                 {
-                                    name: 'compressor',
-                                    value: 'compressor',
+                                    name: "compressor",
+                                    value: "compressor",
                                 },
                                 {
-                                    name: 'expander',
-                                    value: 'expander',
+                                    name: "expander",
+                                    value: "expander",
                                 },
                                 {
-                                    name: 'softlimiter',
-                                    value: 'softlimiter',
+                                    name: "softlimiter",
+                                    value: "softlimiter",
                                 },
                                 {
-                                    name: 'chorus',
-                                    value: 'chorus',
+                                    name: "chorus",
+                                    value: "chorus",
                                 },
                                 {
-                                    name: 'chorus2d',
-                                    value: 'chorus2d',
+                                    name: "chorus2d",
+                                    value: "chorus2d",
                                 },
                                 {
-                                    name: 'chorus3d',
-                                    value: 'chorus3d',
+                                    name: "chorus3d",
+                                    value: "chorus3d",
                                 },
                                 {
-                                    name: 'fadein',
-                                    value: 'fadein',
+                                    name: "fadein",
+                                    value: "fadein",
                                 },
                                 {
-                                    name: 'superequalizer',
-                                    value: 'superequalizer',
+                                    name: "superequalizer",
+                                    value: "superequalizer",
                                 },
                             ],
                         },
                     ],
                 },
                 {
-                    name: 'skip',
-                    description: 'Skip to the current song',
+                    name: "skip",
+                    description: "Skip to the current song",
                 },
                 {
-                    name: 'queue',
-                    description: 'See the queue',
+                    name: "queue",
+                    description: "See the queue",
                 },
                 {
-                    name: 'pause',
-                    description: 'Pause the current song',
+                    name: "pause",
+                    description: "Pause the current song",
                 },
                 {
-                    name: 'resume',
-                    description: 'Resume the current song',
+                    name: "resume",
+                    description: "Resume the current song",
                 },
                 {
-                    name: 'stop',
-                    description: 'Stop the player',
+                    name: "stop",
+                    description: "Stop the player",
                 },
                 {
-                    name: 'np',
-                    description: 'Now Playing',
+                    name: "np",
+                    description: "Now Playing",
                 },
                 {
-                    name: 'lyrics',
-                    description: 'Showing the lyrics of the song',
+                    name: "lyrics",
+                    description: "Showing the lyrics of the song",
                 },
                 {
-                    name: 'back',
-                    description: 'Replaying the last song',
+                    name: "back",
+                    description: "Replaying the last song",
                 },
                 {
-                    name: 'ping',
-                    description: 'Pinging the bot!',
+                    name: "ping",
+                    description: "Pinging the bot!",
                 },
                 {
-                    name: 'help',
+                    name: "help",
                     description:
                         "You didn't understand a thing of what's going on here? just type this command",
                 },
                 {
-                    name: 'shuffle',
-                    description: `The bot shuffles the tracks in the queue.`
+                    name: "shuffle",
+                    description: "The bot shuffles the tracks in the queue."
                 }
             ];
             let app = client.application as ClientApplication;
             let guild = message.guild as Guild;
             app.commands.set(data, guild.id);
-            return message.reply('Deployed!');
+            return message.reply("Deployed!");
         }
     },
 };

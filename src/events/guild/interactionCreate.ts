@@ -1,20 +1,17 @@
+/* eslint-disable no-console */
 const cooldowns = new Map();
-import { Player } from 'discord-player';
 import Discord, {
-    Channel,
     CommandInteraction,
-    GuildChannel,
     GuildMember,
-    Interaction,
-} from 'discord.js';
-import Client from '../../Client';
-import { Event } from '../../Interfaces';
+} from "discord.js";
+import Client from "../../Client";
+import { Event } from "../../Interfaces";
 
 export const event: Event = {
-    name: 'interactionCreate',
+    name: "interactionCreate",
     execute: async (client: Client, interaction: CommandInteraction) => {
         if (interaction.isButton())
-            return await (await import('../configuration/buttonsConfiguration')).event.execute(
+            return await (await import("../configuration/buttonsConfiguration")).event.execute(
                 client,
                 interaction
             );
@@ -74,7 +71,7 @@ export const event: Event = {
         } catch (error) {
             console.error(error);
             await interaction.editReply({
-                content: 'There was an error while executing this command!',
+                content: "There was an error while executing this command!",
             });
         }
     },

@@ -1,18 +1,18 @@
+/* eslint-disable no-unused-vars */
 import {
     CommandInteraction,
     GuildMember,
     TextChannel,
     Guild,
-    MessageEmbedThumbnail,
     MessageEmbed,
     User,
-} from 'discord.js';
-import Client from '../../../Client';
-import { SlashCommand } from '../../../Interfaces';
+} from "discord.js";
+import Client from "../../../Client";
+import { SlashCommand } from "../../../Interfaces";
 
 export const command: SlashCommand = {
-    name: 'np',
-    description: 'Now Playing',
+    name: "np",
+    description: "Now Playing",
     execute(
         client: Client,
         interaction: CommandInteraction,
@@ -23,7 +23,7 @@ export const command: SlashCommand = {
         const queue = client.player.getQueue(interaction.guildId!);
         if (!queue || !queue.playing)
             return void interaction.editReply({
-                content: '❌ | No music is being played!',
+                content: "❌ | No music is being played!",
             });
 
         const progress = queue.createProgressBar();
@@ -32,15 +32,15 @@ export const command: SlashCommand = {
 
         let track1;
 
-        if (!queue.tracks[1]) track1 = 'None';
+        if (!queue.tracks[1]) track1 = "None";
         else track1 = queue.tracks[1]!.title;
 
         let embed = new MessageEmbed()
             .setTitle(`🎶 Now Playing | [**${currentTrack.title}**](${currentTrack.url})`)
             .setColor(0xffffff)
-            .addField('*Volume: *', `\`${queue.volume.toString()}\``)
-            .addField('\u200b', progress)
-            .addField('Up next: ', track1)
+            .addField("*Volume: *", `\`${queue.volume.toString()}\``)
+            .addField("\u200b", progress)
+            .addField("Up next: ", track1)
             .setThumbnail(queue.current.thumbnail)
             .setAuthor({
                 name: queue.current.author,
@@ -48,7 +48,7 @@ export const command: SlashCommand = {
                 iconURL: queue.current.thumbnail,
             })
             .setFooter({
-                text: 'Made by SiniMini876',
+                text: "Made by SiniMini876",
                 iconURL: ((client.application!.owner! as User).avatarURL) as any,
             });
 

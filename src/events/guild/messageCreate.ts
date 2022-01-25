@@ -1,18 +1,18 @@
-import { Player } from 'discord-player';
-import { Collection, Message } from 'discord.js';
-import dotenv from 'dotenv';
-import Client from '../../Client';
-import { Event } from '../../Interfaces';
+/* eslint-disable no-console */
+import { Collection, Message } from "discord.js";
+import dotenv from "dotenv";
+import Client from "../../Client";
+import { Event } from "../../Interfaces";
 dotenv.config();
 
 const cooldowns = new Map();
 
 export const event: Event = {
-    name: 'messageCreate',
+    name: "messageCreate",
     execute: async (client: Client, message: Message) => {
         if (message.author.bot) return;
         if (!message.content.startsWith(client.prefix!)) {
-            await (await import('../configuration/custom_words')).default(client, message);
+            await (await import("../configuration/custom_words")).default(client, message);
             return;
         }
 
@@ -58,8 +58,8 @@ export const event: Event = {
         } catch (err) {
             console.log(err);
             return message.channel.send(
-                ` הייתה בעיה לבצע את הפקודה, אם תקלה זו חוזרת אנא פנה לסיני הגדול ` +
-                    '<@474584102335676427>'
+                " הייתה בעיה לבצע את הפקודה, אם תקלה זו חוזרת אנא פנה לסיני הגדול " +
+                    "<@474584102335676427>"
             );
         }
     },
