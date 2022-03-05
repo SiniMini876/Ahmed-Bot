@@ -1,113 +1,114 @@
+/* eslint-disable no-unused-vars */
 import { CommandInteraction, GuildMember, TextChannel, Guild } from "discord.js";
 import Client from "../../../Client";
 import { SlashCommand } from "../../../Interfaces";
 
 export const command: SlashCommand = {
-    name: 'filter',
-    description: 'Sets a filter',
+    name: "filter",
+    description: "Sets a filter",
     options: [
         {
-            name: 'filter',
-            type: 'STRING',
+            name: "filter",
+            type: "STRING",
             description:
-                'What filter do you want to put / remove',
+                "What filter do you want to put / remove",
             required: true,
             choices: [
                 {
-                    name: 'bassboost',
-                    value: 'bassboost',
+                    name: "bassboost",
+                    value: "bassboost",
                 },
                 {
-                    name: '8d',
-                    value: '8D',
+                    name: "8d",
+                    value: "8D",
                 },
                 {
-                    name: 'vaporwave',
-                    value: 'vaporwave',
+                    name: "vaporwave",
+                    value: "vaporwave",
                 },
                 {
-                    name: 'nightcore',
-                    value: 'nightcore',
+                    name: "nightcore",
+                    value: "nightcore",
                 },
                 {
-                    name: 'phaser',
-                    value: 'phaser',
+                    name: "phaser",
+                    value: "phaser",
                 },
                 {
-                    name: 'vibrato',
-                    value: 'vibrato',
+                    name: "vibrato",
+                    value: "vibrato",
                 },
                 {
-                    name: 'tremolo',
-                    value: 'tremolo',
+                    name: "tremolo",
+                    value: "tremolo",
                 },
                 {
-                    name: 'reverse',
-                    value: 'reverse',
+                    name: "reverse",
+                    value: "reverse",
                 },
                 {
-                    name: 'normalizer',
-                    value: 'normalizer',
+                    name: "normalizer",
+                    value: "normalizer",
                 },
                 {
-                    name: 'pulsator',
-                    value: 'pulsator',
+                    name: "pulsator",
+                    value: "pulsator",
                 },
                 {
-                    name: 'subboost',
-                    value: 'subboost',
+                    name: "subboost",
+                    value: "subboost",
                 },
                 {
-                    name: 'subboost',
-                    value: 'subboost',
+                    name: "subboost",
+                    value: "subboost",
                 },
                 {
-                    name: 'haas',
-                    value: 'haas',
+                    name: "haas",
+                    value: "haas",
                 },
                 {
-                    name: 'mono',
-                    value: 'mono',
+                    name: "mono",
+                    value: "mono",
                 },
                 {
-                    name: 'mstlr',
-                    value: 'mstlr',
+                    name: "mstlr",
+                    value: "mstlr",
                 },
                 {
-                    name: 'mstrr',
-                    value: 'mstrr',
+                    name: "mstrr",
+                    value: "mstrr",
                 },
                 {
-                    name: 'compressor',
-                    value: 'compressor',
+                    name: "compressor",
+                    value: "compressor",
                 },
                 {
-                    name: 'expander',
-                    value: 'expander',
+                    name: "expander",
+                    value: "expander",
                 },
                 {
-                    name: 'softlimiter',
-                    value: 'softlimiter',
+                    name: "softlimiter",
+                    value: "softlimiter",
                 },
                 {
-                    name: 'chorus',
-                    value: 'chorus',
+                    name: "chorus",
+                    value: "chorus",
                 },
                 {
-                    name: 'chorus2d',
-                    value: 'chorus2d',
+                    name: "chorus2d",
+                    value: "chorus2d",
                 },
                 {
-                    name: 'chorus3d',
-                    value: 'chorus3d',
+                    name: "chorus3d",
+                    value: "chorus3d",
                 },
                 {
-                    name: 'fadein',
-                    value: 'fadein',
+                    name: "fadein",
+                    value: "fadein",
                 },
                 {
-                    name: 'superequalizer',
-                    value: 'superequalizer',
+                    name: "superequalizer",
+                    value: "superequalizer",
                 },
             ],
         },
@@ -116,7 +117,7 @@ export const command: SlashCommand = {
         const queue = client.player.getQueue(interaction.guildId!);
         if (!queue || !queue.playing)
             return void interaction.followUp({ content: "❌ | No music is being played!" });
-        const filter = interaction.options.getString("filter")
+        const filter = interaction.options.getString("filter");
         if(filter === "bassboost"){
             await queue.setFilters({
                 bassboost: queue.getFiltersEnabled().includes("bassboost"),
@@ -127,6 +128,6 @@ export const command: SlashCommand = {
             [filter!]: !queue.getFiltersEnabled().includes(filter as any),
         });
 
-        interaction.editReply(`✅ | The filter ${filter} has been ${queue.getFiltersEnabled().includes(filter as any) ? "Enabled" : "Disabled"}!`)
+        interaction.editReply(`✅ | The filter ${filter} has been ${queue.getFiltersEnabled().includes(filter as any) ? "Enabled" : "Disabled"}!`);
     }
 };

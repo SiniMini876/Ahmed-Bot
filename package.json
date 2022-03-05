@@ -38,7 +38,7 @@
     "dev": "nodemon dist/index.js",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
-    "lint": "eslint src/**"
+    "lint": "eslint \"src/**\""
   },
   "devDependencies": {
     "@types/express": "^4.17.13",

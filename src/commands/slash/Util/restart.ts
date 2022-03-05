@@ -1,18 +1,19 @@
+/* eslint-disable no-unused-vars */
 import {
     CommandInteraction,
     GuildMember,
     TextChannel,
     Guild,
-} from 'discord.js';
-import dotenv from 'dotenv';
-import Client from '../../../Client';
+} from "discord.js";
+import dotenv from "dotenv";
+import Client from "../../../Client";
 dotenv.config();
 // import heroku from '../../../Functions/deploytoheroku';
-import { SlashCommand } from '../../../Interfaces';
+import { SlashCommand } from "../../../Interfaces";
 
 export const command: SlashCommand = {
-    name: 'restart',
-    description: 'The bot restarts, should take a couple of minutes',
+    name: "restart",
+    description: "The bot restarts, should take a couple of minutes",
     async execute(
         client: Client,
         interaction: CommandInteraction,
@@ -21,7 +22,7 @@ export const command: SlashCommand = {
         guild: Guild
     ) {
         interaction
-            .editReply('The bot will be online soon, wait like 3 minutes ✅')
+            .editReply("The bot will be online soon, wait like 3 minutes ✅")
             .then((m) => {
                 process.exit(0);
             });

@@ -1,23 +1,24 @@
+/* eslint-disable no-unused-vars */
 import {
     CommandInteraction,
     GuildMember,
     TextChannel,
     Guild,
-} from 'discord.js';
-import dotenv from 'dotenv';
-import Client from '../../../Client';
-import { SlashCommand } from '../../../Interfaces';
+} from "discord.js";
+import dotenv from "dotenv";
+import Client from "../../../Client";
+import { SlashCommand } from "../../../Interfaces";
 dotenv.config();
 
 export const command: SlashCommand = {
-    name: 'clear',
-    description: 'Deletes the amount of the message you want to delete.',
+    name: "clear",
+    description: "Deletes the amount of the message you want to delete.",
     options: [
         {
-            name: 'amount',
-            description: 'The amount of the message you want to delete.',
+            name: "amount",
+            description: "The amount of the message you want to delete.",
             required: true,
-            type: 'NUMBER',
+            type: "NUMBER",
         },
     ],
     async execute(
@@ -27,13 +28,13 @@ export const command: SlashCommand = {
         channel: TextChannel,
         guild: Guild
     ) {
-        const amount = interaction.options.getNumber('amount');
+        const amount = interaction.options.getNumber("amount");
 
-        if (!member.permissions.has('MANAGE_ROLES'))
+        if (!member.permissions.has("MANAGE_ROLES"))
             return interaction.editReply(
                 "You don't have the permission to do this."
             );
-        interaction.editReply('Deleting ' + amount + ' messages.');
+        interaction.editReply("Deleting " + amount + " messages.");
         return channel.bulkDelete(amount!);
     },
 };

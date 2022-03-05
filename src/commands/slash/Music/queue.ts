@@ -1,15 +1,16 @@
+/* eslint-disable no-unused-vars */
 import {
     CommandInteraction,
     GuildMember,
     TextChannel,
     Guild,
-} from 'discord.js';
-import Client from '../../../Client';
-import { SlashCommand } from '../../../Interfaces';
+} from "discord.js";
+import Client from "../../../Client";
+import { SlashCommand } from "../../../Interfaces";
 
 export const command: SlashCommand = {
-    name: 'queue',
-    description: 'See the queue',
+    name: "queue",
+    description: "See the queue",
     async execute(
         client: Client,
         interaction: CommandInteraction,
@@ -20,7 +21,7 @@ export const command: SlashCommand = {
         const queue = client.player.getQueue(interaction.guildId!);
         if (!queue || !queue.playing)
             return void interaction.editReply({
-                content: '❌ | No music is being played!',
+                content: "❌ | No music is being played!",
             });
         const currentTrack = queue.current;
         const tracks = queue.tracks
@@ -32,8 +33,8 @@ export const command: SlashCommand = {
         return void interaction.editReply({
             embeds: [
                 {
-                    title: 'Server Queue',
-                    description: `${tracks.join('\n')}${
+                    title: "Server Queue",
+                    description: `${tracks.join("\n")}${
                         queue.tracks.length > tracks.length
                             ? `\n...${
                                   queue.tracks.length - tracks.length === 1
@@ -44,25 +45,25 @@ export const command: SlashCommand = {
                                             queue.tracks.length - tracks.length
                                         } more tracks`
                               }`
-                            : ''
+                            : ""
                     }`,
                     thumbnail: {
-                        url: currentTrack.playlist?.thumbnail ?? '',
+                        url: currentTrack.playlist?.thumbnail ?? "",
                     },
-                    color: '#ffb217',
+                    color: "#ffb217",
                     fields: [
                         {
-                            name: 'Now Playing',
+                            name: "Now Playing",
                             value: `🎶 | **${currentTrack.title}** ([link](${currentTrack.url}))`,
                         },
                         {
-                            name: 'Filters:',
+                            name: "Filters:",
                             value: `These filters are enabled:\n${queue
                                 .getFiltersEnabled()
                                 .toString()}`,
                         },
                         {
-                            name: 'Repeat Mode:',
+                            name: "Repeat Mode:",
                             value: `${queue.repeatMode}`,
                         },
                     ],

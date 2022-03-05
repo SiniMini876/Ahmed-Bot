@@ -1,26 +1,26 @@
-import { CommandInteraction, GuildMember, TextChannel, Guild, VoiceChannel } from 'discord.js';
-import dotenv from 'dotenv';
-import Client from '../../../Client';
-import { SlashCommand } from '../../../Interfaces';
+import { CommandInteraction, GuildMember, TextChannel, Guild, VoiceChannel } from "discord.js";
+import dotenv from "dotenv";
+import Client from "../../../Client";
+import { SlashCommand } from "../../../Interfaces";
 dotenv.config();
 
 export const command: SlashCommand = {
-    name: 'createroom',
+    name: "createroom",
     description:
         "Let's you create a unique room just for you and the number of people you set!",
     options: [
         {
-            name: 'maximumpeople',
+            name: "maximumpeople",
             description:
-                'The maximum amount of people that can join!',
+                "The maximum amount of people that can join!",
             required: true,
-            type: 'NUMBER',
+            type: "NUMBER",
         },
     ],
     async execute(client: Client, interaction: CommandInteraction, member: GuildMember, channel: TextChannel, guild: Guild) {
-        const max = interaction.options.getNumber('maximumpeople');
+        const max = interaction.options.getNumber("maximumpeople");
 
-        if (guild.id !== '693864294911049829')
+        if (guild.id !== "693864294911049829")
             // buganim's ID
             return interaction.editReply(
                 "This command can only be used in Buganim's Server!"
@@ -29,15 +29,15 @@ export const command: SlashCommand = {
         const newVoiceChannel = await guild.channels.create(
             `חדר פרטי - ${interaction.user.username} -  ${max}`,
             {
-                type: 'GUILD_VOICE',
+                type: "GUILD_VOICE",
                 // parent: '762279647815401483',
-                parent: '719179244781043813',
+                parent: "719179244781043813",
                 userLimit: max as number,
             }
         );
         const voiceChannel = guild.channels.cache.find(
             (c) => c.id === newVoiceChannel.id
-        ) as VoiceChannel
+        ) as VoiceChannel;
         if (member.voice.channel) {
             member.voice.setChannel(voiceChannel as VoiceChannel);
         }
@@ -47,7 +47,7 @@ export const command: SlashCommand = {
             reason: `Private room for ${member}`,
         });
 
-        const inviteURL = await interaction.editReply(inviteVoice.url);
+        await interaction.editReply(inviteVoice.url);
 
         setInterval(() => {
             if (guild.channels.cache.find((c) => c.id === voiceChannel!.id)) {
@@ -63,23 +63,23 @@ export const command: SlashCommand = {
                         {
                             permissionOverwrites: [
                                 {
-                                    id: '720677306036781218',
-                                    deny: ['VIEW_CHANNEL'],
+                                    id: "720677306036781218",
+                                    deny: ["VIEW_CHANNEL"],
                                 },
                                 {
                                     id: member.id,
-                                    allow: ['VIEW_CHANNEL', 'MOVE_MEMBERS'],
+                                    allow: ["VIEW_CHANNEL", "MOVE_MEMBERS"],
                                 },
                             ],
                         },
-                        'The channel is full'
+                        "The channel is full"
                     );
                 } else {
                     voiceChannel.edit({
                         permissionOverwrites: [
                             {
-                                id: '474584102335676427',
-                                allow: ['VIEW_CHANNEL'],
+                                id: "474584102335676427",
+                                allow: ["VIEW_CHANNEL"],
                             },
                         ],
                     });

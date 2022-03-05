@@ -1,22 +1,17 @@
 import {
-    CommandInteraction,
-    GuildMember,
-    TextChannel,
-    Guild,
     Message,
-    MessageEmbedImage,
-} from 'discord.js';
-import Client from '../../../Client';
-import { Command } from '../../../Interfaces';
+} from "discord.js";
+import Client from "../../../Client";
+import { Command } from "../../../Interfaces";
 
 export const command: Command = {
-    name: 'queue',
-    description: 'See the queue',
-    async execute(client: Client, message: Message, args: any[]) {
+    name: "queue",
+    description: "See the queue",
+    async execute(client: Client, message: Message) {
         const queue = client.player.getQueue(message.guildId!);
         if (!queue || !queue.playing)
             return void message.channel.send({
-                content: '❌ | No music is being played!',
+                content: "❌ | No music is being played!",
             });
         const currentTrack = queue.current;
         const tracks = queue.tracks
@@ -28,11 +23,11 @@ export const command: Command = {
         return void message.channel.send({
             embeds: [
                 {
-                    title: 'Server Queue',
+                    title: "Server Queue",
                     thumbnail: {
-                        url: currentTrack.playlist?.thumbnail ?? '',
+                        url: currentTrack.playlist?.thumbnail ?? "",
                     },
-                    description: `${tracks.join('\n')}${
+                    description: `${tracks.join("\n")}${
                         queue.tracks.length > tracks.length
                             ? `\n...${
                                   queue.tracks.length - tracks.length === 1
@@ -43,22 +38,22 @@ export const command: Command = {
                                             queue.tracks.length - tracks.length
                                         } more tracks`
                               }`
-                            : ''
+                            : ""
                     }`,
-                    color: '#ffb217',
+                    color: "#ffb217",
                     fields: [
                         {
-                            name: 'Now Playing',
+                            name: "Now Playing",
                             value: `🎶 | **${currentTrack.title}** ([link](${currentTrack.url}))`,
                         },
                         {
-                            name: 'Filters:',
+                            name: "Filters:",
                             value: `These filters are enabled:\n${queue
                                 .getFiltersEnabled()
                                 .toString()}`,
                         },
                         {
-                            name: 'Repeat Mode:',
+                            name: "Repeat Mode:",
                             value: `${queue.repeatMode}`,
                         },
                     ],

@@ -1,12 +1,12 @@
-import { Message, MessageEmbed, MessageEmbedOptions } from 'discord.js';
-import Client from '../../../Client';
-import { Command } from '../../../Interfaces';
+import { Message, MessageEmbed } from "discord.js";
+import Client from "../../../Client";
+import { Command } from "../../../Interfaces";
 
 export const command: Command = {
-    name: 'help',
-    aliases: ['h'],
+    name: "help",
+    aliases: ["h"],
     cooldown: 5,
-    description: 'The client sends an help page, like this one.',
+    description: "The client sends an help page, like this one.",
     async execute(client: Client, message: Message, args: string[]) {
         if (args[1]) {
             return getCMD(client, message, args[1]);
@@ -18,14 +18,14 @@ export const command: Command = {
 
 async function helpMSG(client: Client, message: Message) {
     const embed = new MessageEmbed()
-        .setTitle('אחמד - עזרה')
+        .setTitle("אחמד - עזרה")
         .setThumbnail(client.user!.avatarURL()!)
         .setDescription(
             `For a full list of commands, please type \`${client.prefix}commands\` \n\nTo see more info about a specific command, please type \`${client.prefix}help <command>\` without the \`<>\``
         )
         .addField(
-            'למה זה באנגלית?',
-            'דיסקורד לא תומך בצורה מלאה בעברית לכן סיני היקר שלנו כתב הכל באנגלית'
+            "למה זה באנגלית?",
+            "דיסקורד לא תומך בצורה מלאה בעברית לכן סיני היקר שלנו כתב הכל באנגלית"
         );
     message.channel.send({ embeds: [embed] });
 }
@@ -42,7 +42,7 @@ async function getCMD(client: Client, message: Message, input: string) {
         .setTimestamp();
 
     if (!cmd) {
-        em.setColor('#ff0000').setDescription(info)
+        em.setColor("#ff0000").setDescription(info);
         return message.channel.send(
             {
                 embeds: [em]
@@ -56,11 +56,11 @@ async function getCMD(client: Client, message: Message, input: string) {
         .setTimestamp();
 
     if (cmd.name) info = `**Command Name**: \`${cmd.name}\``;
-    if (cmd.aliases) info += `\n**Aliases**: \`${cmd.aliases.join(', ')}\``;
+    if (cmd.aliases) info += `\n**Aliases**: \`${cmd.aliases.join(", ")}\``;
     if (cmd.description) info += `\n**Description**: ${cmd.description}`;
     if (cmd.usage) {
         info += `\n**Usage**: ${client.prefix}${cmd.usage}`;
-        embed.setFooter('<> = REQUIRED | [] = OPTIONAL');
+        embed.setFooter("<> = REQUIRED | [] = OPTIONAL");
     }
     return message.channel.send({ embeds: [embed.setDescription(info)]});
 }

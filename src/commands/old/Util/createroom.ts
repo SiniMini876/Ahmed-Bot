@@ -1,31 +1,30 @@
 import {
-    ClientUser,
     Guild,
     GuildMember,
     Message,
     VoiceChannel,
-} from 'discord.js';
-import Client from '../../../Client';
-import { Command } from '../../../Interfaces';
+} from "discord.js";
+import Client from "../../../Client";
+import { Command } from "../../../Interfaces";
 
 export const command: Command = {
-    name: 'createroom',
-    aliases: ['cr'],
+    name: "createroom",
+    aliases: ["cr"],
     cooldown: 5,
-    description: 'הבוט פותח חדר חדש ננדש רק לכם ולמי שתרצו שתכניסו',
-    usage: 'createroom || cr <כמה אנשים בחדר>',
+    description: "הבוט פותח חדר חדש ננדש רק לכם ולמי שתרצו שתכניסו",
+    usage: "createroom || cr <כמה אנשים בחדר>",
     async execute(client: Client, message: Message, args: string[]) {
         if (!args[1])
             return message.channel.send(
-                'אתה צריך לכתוב את המקסימום אנשים לחדר.'
+                "אתה צריך לכתוב את המקסימום אנשים לחדר."
             );
         let guild = message.guild as Guild;
         let member = message.member as GuildMember;
         const newVoiceChannel = (await guild.channels.create(
             `חדר פרטי - ${message.author.username} -  ${args[1]}`,
             {
-                type: 'GUILD_VOICE',
-                parent: '719179244781043813',
+                type: "GUILD_VOICE",
+                parent: "719179244781043813",
                 userLimit: parseInt(args[1]),
             }
         )) as VoiceChannel;
@@ -42,7 +41,7 @@ export const command: Command = {
             reason: `Private room for ${message.member}`,
         });
 
-        const inviteURL = await message.channel.send(inviteVoice.url);
+        await message.channel.send(inviteVoice.url);
 
         message.delete();
         // setInterval(() => {
