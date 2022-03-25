@@ -38,6 +38,7 @@
     "ts": "ts-node src/index.ts",
     "dev": "nodemon dist/index.js",
     "build": "tsc",
+    "buildDEV": "tsc --watch",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint \"src/**\""
   },

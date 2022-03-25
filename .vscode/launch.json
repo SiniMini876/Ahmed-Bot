@@ -4,7 +4,7 @@
             "type": "node-terminal",
             "name": "Build",
             "request": "launch",
-            "command": "npm run build",
+            "command": "npm run buildDEV",
             "cwd": "${workspaceFolder}"
         },
         {
