@@ -52,6 +52,20 @@ export const event: Event = {
                     console.log(err);
                 }
             }
+            if (reaction.message.id === "956852427473162303") {
+                const role = await guild.roles.fetch("955487947820499004");
+                const member = await guild.members.fetch(user.id);
+
+                if (!member || !role) return;
+
+                if (reaction.emoji.id !== "760410966235021322") return;
+
+                try {
+                    await member.roles.add(role);
+                } catch (err) {
+                    console.log(err);
+                }
+            }
         };
 
         if (reaction.message.partial) {
@@ -65,6 +79,10 @@ export const event: Event = {
                     // Almo
                     applyRole();
                 }
+                if (msg.id === "956852427473162303") {
+                    // sharpesha
+                    applyRole();
+                }
             } catch (err) {
                 console.log(err);
             }
@@ -75,6 +93,10 @@ export const event: Event = {
             }
             if (reaction.message.id === "819698938658553906") {
                 // Almo
+                applyRole();
+            }
+            if (reaction.message.id === "956852427473162303") {
+                // sharpesha
                 applyRole();
             }
         }

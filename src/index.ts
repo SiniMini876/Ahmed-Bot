@@ -10,7 +10,17 @@ const client = new Client({
         "GUILD_BANS",
         "GUILD_PRESENCES",
         "GUILD_INVITES",
+        "GUILD_MESSAGE_REACTIONS",
+        "DIRECT_MESSAGE_REACTIONS"
     ],
+    partials: [
+        "CHANNEL",
+        "GUILD_MEMBER",
+        "GUILD_SCHEDULED_EVENT",
+        "MESSAGE",
+        "REACTION",
+        "USER"
+    ]
 });
 
 client.init();
