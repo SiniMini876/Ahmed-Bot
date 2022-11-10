@@ -22,7 +22,7 @@
   "repository": "https://github.com/SiniMini876/Ahmed-Bot",
   "dependencies": {
     "@discord-player/extractor": "^3.0.2",
-    "@discordjs/opus": "^0.7.0",
+    "@discordjs/opus": "^0.8.0",
     "axios": "^0.24.0",
     "discord-player": "^5.2.0",
     "discord.js": "^13.5.1",
